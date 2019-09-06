@@ -3,9 +3,19 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "@material-ui/core": "^4.3.3",
+    "bootstrap": "^4.3.1",
+    "node-sass": "^4.12.0",
     "react": "^16.9.0",
+    "react-bootstrap": "^1.0.0-beta.12",
     "react-dom": "^16.9.0",
-    "react-scripts": "3.1.1"
+    "react-intl": "^3.1.13",
+    "react-scripts": "3.1.1",
+    "terra-abstract-modal": "^3.10.0",
+    "terra-aggregate-translations": "^1.1.0",
+    "terra-base": "^5.17.0",
+    "terra-form-input": "^2.23.0",
+    "terra-modal-manager": "^6.10.0"
   },
   "scripts": {
     "start": "react-scripts start",
