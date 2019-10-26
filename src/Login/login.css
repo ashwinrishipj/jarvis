@@ -1,0 +1,70 @@
+.starting{
+  overflow-x: hidden;
+  overflow-y:hidden; 
+}
+
+.button:active {
+  background-color: rgb(83, 83, 83);
+  /* box-shadow: 0 5px rgb(230, 109, 109); */
+  transform: translateY(5px);
+}
+ .marginalignments {
+  margin-top:15%;
+  margin-left:7%
+}
+.blue{
+  color: #007bff !important;
+}
+.red{
+  color: red !important;
+}
+
+/* data grid*/
+.row {
+  display: flex;
+  flex-wrap: wrap;
+  padding: 0 2px;
+}
+
+/* Create four equal columns that sits next to each other */
+.column {
+  flex: 25%;
+  max-width: 100%;
+  padding: 0 2px;
+}
+
+.column img {
+  margin-top: 8px;
+  vertical-align: middle;
+  width: 100%;
+}
+
+
+.zoomin img {
+  /* height: 200px;
+  width: 200px; */
+  overflow-x: visible;
+  -webkit-transition: all 4s ease;
+  -moz-transition: all 2s ease;
+  -ms-transition: all 2s ease;
+  transition: all 1s ease;
+  z-index: -1;
+}
+
+
+/* corosel */
+.data{
+  background-image:url('./images/mountain.jpg');
+  /* background-repeat: no-repeat; */
+  background-size: cover;
+  z-index: -2;
+   /* filter: blur(1px);
+  -webkit-filter: blur(2px);  */
+  height:100vh !important;
+}
+
+/* particles css*/
+.anchor{
+  margin-left: 10%;
+
+}
