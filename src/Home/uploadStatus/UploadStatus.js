@@ -1,8 +1,5 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import "./upload.css";
-
-import Alert from "react-bootstrap/Alert";
-import ContentPosted from "../../Alerts/postAlert";
 
 function UploadData() {
   const [image, setImage] = useState(null);
@@ -49,7 +46,7 @@ function UploadData() {
     }
   };
 
-  const imageName = (e) => {
+  const imageName = e => {
     e.preventDefault();
     alert(e.target.offsetHeight);
     setPreviewImage(e.target.files[0].name);
@@ -86,9 +83,8 @@ function UploadData() {
   };
 
   return (
-    <div>
       <div className="container">
-        {alerts ? <ContentPosted changeAlert={() => changeAlert()} /> : ""}
+        {alerts ? <positiveAlert changeAlert={() => changeAlert()} /> : ""}
         <div className="form-group">
           <label style={{ color: "red" }}>post your thoughts:</label>
           <textarea
@@ -136,7 +132,6 @@ function UploadData() {
           </div>
         </div>
       </div>
-    </div>
   );
 }
 

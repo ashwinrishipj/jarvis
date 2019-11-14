@@ -1,30 +1,28 @@
-import React from 'react'
-import AOS from 'aos';
-import 'aos/dist/aos.css';
-import { NavBar } from './NavBar';
-import { Cards } from './Cards';
-import { ImageGrid } from './ImageGrid';
-import { Footer } from './Footer';
+import React from "react";
+import AOS from "aos";
+import "aos/dist/aos.css";
+import { NavBar } from "./NavBar";
+import { Cards } from "./Cards";
+import { ImageGrid } from "./ImageGrid";
+import { Footer } from "./Footer";
 
-
-export default class LandingPage extends React.Component{
-
-  componentDidMount =()=>{
+export default class LandingPage extends React.Component {
+  componentDidMount = () => {
     AOS.init({
       once: false, // whether animation should happen only once - while scrolling down
       mirror: true,
-      debounceDelay: 50,
-    })
-  }
+      debounceDelay: 50
+    });
+  };
 
-  render(){
+  render() {
     return (
-      <div className="starting">
-        <NavBar/>
-        <ImageGrid/>
-        <Footer/>     
-      </div>
-    )
-    }
+      <React.Fragment className="starting">
+        <NavBar />
+        <Cards />
+        <ImageGrid />
+        <Footer />
+      </React.Fragment>
+    );
+  }
 }
-

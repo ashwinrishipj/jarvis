@@ -26,7 +26,7 @@ export const ImageGrid = () => {
   const fetchImages = () => {
     const apiRoot = "https://api.unsplash.com";
     const accessKey =
-      "04ef34af0d8524c97d17ff1bfe9e132596c0a4439229e6da1c3b8e0b31e9eb31";
+      "04ef34af0d8524c97d17ff1bfe9e132596c0a4439229e6da1c3b8e0b31e9eb3";
 
     fetch(`${apiRoot}/photos/random?client_id=${accessKey}&count=20`)
       .then(response => {
@@ -60,9 +60,9 @@ export const ImageGrid = () => {
   }, []);
 
   return (
-    <div className="container-fluid px-0" sstyle={{ height: "100vh" }}>
+    <div className="container-fluid px-0">
       {loaded ? (
-        <div>
+        <>
           <Gallery
             photos={images}
             onClick={openLightbox}
@@ -81,7 +81,7 @@ export const ImageGrid = () => {
               </Modal>
             ) : null}
           </ModalGateway>
-        </div>
+        </>
       ) : (
         <div className="d-flex justify-content-center">
   <div className="spinner-grow text-primary" role="status">
