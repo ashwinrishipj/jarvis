@@ -60,7 +60,8 @@ export const ImageGrid = () => {
   }, []);
 
   return (
-    <div className="container-fluid px-0">
+    <div className="container-fluid px-0 imageGrid">
+      <h2> Check out our pics </h2>
       {loaded ? (
         <>
           <Gallery

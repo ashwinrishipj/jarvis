@@ -6,7 +6,6 @@ import './Login/login.css'
 import ReactDOM from 'react-dom';
 import React from 'react';
 import App from './App';
-import Parts from './particles/Parts';
 
 ReactDOM.render(<App/>, document.getElementById('root'));
 

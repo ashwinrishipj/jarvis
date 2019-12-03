@@ -8,7 +8,7 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import './App.css';
 import Home from './Home/home'
 import LandingPage from './Login/LandingPage';
-import Parts from './particles/Parts';
+
 
 function App() {
   return (

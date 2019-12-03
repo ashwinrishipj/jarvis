@@ -115,7 +115,10 @@ class Parts extends React.Component {
 
   render() {
     return (
-      <div>
+      <div
+      data-aos="flip-right"
+      className="centerSignup"
+    >
         <form className="needs-validation blue" novalidate>
           <div className="negativeAlert">
             {this.state.Alert ? (
@@ -228,7 +231,7 @@ class Parts extends React.Component {
           <div className="modal-footer" style={{ marginTop: "15px" }}>
             <button
               className="btn btn-outline-warning button"
-              onClick={this.props.triggerSignUp}
+              onClick={this.props.triggerSignup}
             >
               Login
             </button>

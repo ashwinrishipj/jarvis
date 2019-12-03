@@ -30,15 +30,30 @@
   height:100vh !important;
 }
 
-/* particles css*/
-.anchor{
+.centerLogin{
+  width: 420px;
+  margin-top: 90px;
+}
+.cardsText{
   margin-left: 10%;
 }
+.negativeALert{
+  position: absolute;
+  margin-bottom: -20%;
+}
+.imageGrid {
+  /* background-color: #004a99; */
+  text-align: center;
+  margin-top: 20px;
+  margin-bottom: 20px;
+}
 
-.centerLogin{
- margin-top:15%;
- margin-left: 35%;
- margin-right:20%;
- text-align: center;
- vertical-align: middle;
+@media only screen and (max-width: 600px) {
+  .centerSignup {
+    margin-top: -32%;
+  }
+  .centerLogin{
+    margin-top: 30%;
+    width: 350px;
+  }
 }

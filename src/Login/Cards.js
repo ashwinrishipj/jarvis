@@ -3,9 +3,7 @@ import React from "react";
 export class Cards extends React.Component {
   render() {
     return (
-      <div className="container">
-        <div className="container">
-        <div className="container">
+      <div className="container cardsText">
           <h4 data-aos="fade-up" data-aos-duration="2000">
             <b>Are you a person who Admire pictures?</b>
           </h4>
@@ -93,8 +91,6 @@ export class Cards extends React.Component {
             </div>
           </div>
         </div>
-        </div>
-      </div>
     );
   }
 }
