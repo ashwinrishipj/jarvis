@@ -20,7 +20,9 @@
 }
 
 
-
+.row{
+  overflow-y: hidden;
+}
 /* corosel */
 .data{
   background-image:url('./images/mountain.jpg');
@@ -35,5 +37,4 @@
 /* particles css*/
 .anchor{
   margin-left: 10%;
-
 }

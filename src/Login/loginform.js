@@ -103,7 +103,13 @@ class LoginForm extends React.Component {
   render() {
     return (
       <div>
-        <section className="col-lg-11 px-0" style={{ Text: "5px" }}>
+        <div
+          data-aos="zoom-in-down"
+          data-aos-duration="380"
+          data-aos-easing="ease-in-back"
+        >
+          <form>
+          <section style={{ Text: "5px" }}>
           {this.state.alert ? (
             <NegativeAlert
               changeAlert={this.changeAlert}
@@ -113,17 +119,11 @@ class LoginForm extends React.Component {
             ""
           )}
         </section>
-        <div
-          data-aos="zoom-in-down"
-          data-aos-duration="380"
-          data-aos-easing="ease-in-back"
-        >
-          <form>
             <div className="form-group">
               <label for="exampleInputEmail1" className="blue">
                 Email address
               </label>
-              <div className="col-lg-11 px-0">
+              <div>
                 <input
                   type="email"
                   className="form-control"
@@ -141,7 +141,7 @@ class LoginForm extends React.Component {
               <label for="exampleInputPassword1" className="blue">
                 Password
               </label>
-              <div className="col-lg-11 px-0">
+              <div>
                 <input
                   type="password"
                   className="form-control"
@@ -154,7 +154,7 @@ class LoginForm extends React.Component {
                 {this.state.passwordError}
               </small>
             </div>
-            <div className="col-lg-11 px-0">
+            <div>
               <button
                 type="button"
                 className="btn btn-outline-primary btn-block button text-white"
@@ -164,7 +164,7 @@ class LoginForm extends React.Component {
               </button>
             </div>
             <div
-              className="modal-footer col-lg-11"
+              className="modal-footer "
               style={{ marginTop: "15px" }}
             >
               <button type="button" className="btn btn-outline-warning button">

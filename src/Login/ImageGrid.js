@@ -26,7 +26,7 @@ export const ImageGrid = () => {
   const fetchImages = () => {
     const apiRoot = "https://api.unsplash.com";
     const accessKey =
-      "04ef34af0d8524c97d17ff1bfe9e132596c0a4439229e6da1c3b8e0b31e9eb31";
+      "04ef34af0d8524c97d17ff1bfe9e132596c0a4439229e6da1c3b8e0b31e9eb3";
 
     fetch(`${apiRoot}/photos/random?client_id=${accessKey}&count=20`)
       .then(response => {

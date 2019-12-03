@@ -1,19 +1,7 @@
 import React from "react";
-import Canvas from "./particle";
 import NegativeAlert from "../Alerts/NegativeAlert";
 import { FetchData } from "../fetch/Fetch";
 import { withRouter } from "react-router-dom";
-
-const styles = {
-  root: {
-    fontFamily: "sans-serif",
-    textAlign: "center",
-    background: "#0d0d0d",
-    display: "flex",
-    justifyContent: "center",
-    alignItems: "center"
-  }
-};
 
 class Parts extends React.Component {
   state = {
@@ -115,8 +103,6 @@ class Parts extends React.Component {
   render() {
     return (
       <div>
-        <div style={styles.root}>
-          <Canvas />
           <div style={{ position: "absolute", textAlign: "center" }}>
             {this.state.Alert ? (
               <NegativeAlert
@@ -228,7 +214,6 @@ class Parts extends React.Component {
             </form>
           </div>
         </div>
-      </div>
     );
   }
 }
