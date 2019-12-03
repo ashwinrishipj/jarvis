@@ -1,27 +1,9 @@
-import React, { useState } from "react";
+import React from "react";
 import "aos/dist/aos.css";
 import LoginForm from "./loginform";
-import { withRouter,Route } from "react-router-dom";
-import Parts from "../particles/Parts";
+import { withRouter } from "react-router-dom";
 
 export const NavBar = () => {
-  const [modal, setmodal] = useState(false);
-  const [home, setHome] = useState(false);
-  const [alert, setAlert] = useState(false);
-
-  const triggerLogin = (e) => {
-    e.preventDefault();
-    setmodal(!modal);
-  };
-
-  const triggerHome =(e)=>{
-    setHome(!home)
-  }
-
-  const triggerAlert = () => {
-    setAlert(!alert);
-  };
-
   return (
       <div className="container-fluid px-0 data">
         <div className="row">
@@ -65,7 +47,7 @@ export const NavBar = () => {
           </nav>
         </div>
         <div class="row centerLogin">
-        <div class="col-lg-3">
+        <div class="col-lg-9">
             <LoginForm/>
             </div>
           </div>

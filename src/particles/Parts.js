@@ -4,17 +4,19 @@ import { FetchData } from "../fetch/Fetch";
 import { withRouter } from "react-router-dom";
 
 class Parts extends React.Component {
-  state = {
-    firstName: "",
-    lastName: "",
-    emailId: "",
-    password: "",
-    confirmPassword: "",
-    Terms: "",
-    error: "",
-    Alert: false
-  };
-
+  constructor(props) {
+    super(props);
+    this.state = {
+      firstName: "",
+      lastName: "",
+      emailId: "",
+      password: "",
+      confirmPassword: "",
+      Terms: "",
+      error: "",
+      Alert: false
+    };
+  }
   changeAlert = contentText => {
     this.setState({ Alert: !this.state.Alert, error: contentText });
   };
@@ -33,11 +35,22 @@ class Parts extends React.Component {
         }
         `
     };
-    FetchData(requestBody).then(response => {
-      return response === true
-        ? this.props.history.push("/home")
-        : this.changeAlert(response);
-    });
+    if (
+      this.state.error === "" &&
+      this.state.firstName !== "" &&
+        this.state.lastName !== "" &&
+        this.state.emailId !== "" &&
+        this.state.password !== "" &&
+        this.state.confirmPassword !== ""
+    ) {
+      FetchData(requestBody).then(response => {
+        return response === true
+          ? this.props.history.push("/home")
+          : this.changeAlert(response);
+      });
+    } else {
+      this.setState({ Alert: true,error:"enter valid data:" });
+    }
   };
 
   validateFields = e => {
@@ -103,7 +116,8 @@ class Parts extends React.Component {
   render() {
     return (
       <div>
-          <div style={{ position: "absolute", textAlign: "center" }}>
+        <form className="needs-validation blue" novalidate>
+          <div className="negativeAlert">
             {this.state.Alert ? (
               <NegativeAlert
                 content={this.state.error}
@@ -112,108 +126,115 @@ class Parts extends React.Component {
             ) : (
               ""
             )}
-            <form className="needs-validation blue" novalidate>
-              <div className="form-row">
-                <div className="col-md-3 mb-3">
-                  <label for="validationCustom01">First name</label>
-                  <input
-                    type="text"
-                    className="form-control"
-                    name="firstName"
-                    placeholder="First name"
-                    onChange={this.validateFields}
-                    required
-                  />
-                  <div className="valid-feedback">Looks good!</div>
-                </div>
-                <div className="col-md-3 mb-3">
-                  <label for="validationCustom02">Last name</label>
-                  <input
-                    type="text"
-                    className="form-control"
-                    name="lastName"
-                    placeholder="Last name"
-                    onChange={this.validateFields}
-                    required
-                  />
-                  <div className="valid-feedback">Looks good!</div>
-                </div>
-                <div className="col-md-6 mb-3">
-                  <label for="validationCustomUsername">Email ID:</label>
-                  <div className="input-group">
-                    <div className="input-group-prepend">
-                      <span className="input-group-text" id="inputGroupPrepend">
-                        <i className="fa fa-envelope icon"></i>
-                      </span>
-                    </div>
-                    <input
-                      type="email"
-                      className="form-control"
-                      name="emailId"
-                      placeholder="abcdefghi@gmail.com"
-                      aria-describedby="inputGroupPrepend"
-                      onChange={this.validateFields}
-                      required
-                    />
-                    <div className="invalid-feedback">
-                      Please choose a username.
-                    </div>
-                  </div>
-                </div>
-              </div>
-              <div className="form-row">
-                <div className="col-md-6 mb-3">
-                  <label for="validationCustom03">Password</label>
-                  <input
-                    type="password"
-                    className="form-control"
-                    name="password"
-                    placeholder="must have a digit and upper case"
-                    onChange={this.validateFields}
-                    required
-                  />
-                  <div class="invalid-feedback text-red">
-                    Please provide a valid city.
-                  </div>
-                </div>
-                <div className="col-md-6 mb-3">
-                  <label for="validationCustom03">Re-Type Password</label>
-                  <input
-                    type="password"
-                    className="form-control"
-                    name="confirmPassword"
-                    placeholder="match with the password:"
-                    onChange={this.validateFields}
-                    required
-                  />
-                </div>
-              </div>
-              <div className="form-group">
-                <div className="form-check">
-                  <input
-                    className="form-check-input"
-                    type="checkbox"
-                    value=""
-                    required
-                  />
-                  <label className="form-check-label" for="invalidCheck">
-                    Agree to terms and conditions
-                  </label>
-                  <div className="invalid-feedback text-red">
-                    You must agree before submitting.
-                  </div>
-                </div>
-              </div>
-              <button
-                className="btn btn-primary"
-                type="submit"
-                onClick={this.onSubmitForm}
-              >
-                Submit form
-              </button>
-            </form>
           </div>
-        </div>
+          <div className="form-row">
+            <div className="col-md-3 mb-3">
+              <label for="validationCustom01">First name</label>
+              <input
+                type="text"
+                className="form-control"
+                name="firstName"
+                placeholder="First name"
+                onChange={this.validateFields}
+                required
+              />
+              <div className="valid-feedback">Looks good!</div>
+            </div>
+            <div className="col-md-3 mb-3">
+              <label for="validationCustom02">Last name</label>
+              <input
+                type="text"
+                className="form-control"
+                name="lastName"
+                placeholder="Last name"
+                onChange={this.validateFields}
+                required
+              />
+              <div className="valid-feedback">Looks good!</div>
+            </div>
+            <div className="col-md-6 mb-3">
+              <label for="validationCustomUsername">Email ID:</label>
+              <div className="input-group">
+                <div className="input-group-prepend">
+                  <span className="input-group-text" id="inputGroupPrepend">
+                    <i className="fa fa-envelope icon"></i>
+                  </span>
+                </div>
+                <input
+                  type="email"
+                  className="form-control"
+                  name="emailId"
+                  placeholder="abcdefghi@gmail.com"
+                  aria-describedby="inputGroupPrepend"
+                  onChange={this.validateFields}
+                  required
+                />
+                <div className="invalid-feedback">
+                  Please choose a username.
+                </div>
+              </div>
+            </div>
+          </div>
+          <div className="form-row">
+            <div className="col-md-6 mb-3">
+              <label for="validationCustom03">Password</label>
+              <input
+                type="password"
+                className="form-control"
+                name="password"
+                placeholder="must have a digit and upper case"
+                onChange={this.validateFields}
+                required
+              />
+              <div class="invalid-feedback text-red">
+                Please provide a valid city.
+              </div>
+            </div>
+            <div className="col-md-6 mb-3">
+              <label for="validationCustom03">Re-Type Password</label>
+              <input
+                type="password"
+                className="form-control"
+                name="confirmPassword"
+                placeholder="match with the password:"
+                onChange={this.validateFields}
+                required
+              />
+            </div>
+          </div>
+          <div className="form-group">
+            <div className="form-check">
+              <input
+                className="form-check-input"
+                type="checkbox"
+                value=""
+                required
+              />
+              <label className="form-check-label" for="invalidCheck">
+                Agree to terms and conditions
+              </label>
+              <div className="invalid-feedback text-red">
+                You must agree before submitting.
+              </div>
+            </div>
+          </div>
+          <button
+            className="btn btn-outline-primary btn-block button"
+            type="submit"
+            onClick={this.onSubmitForm}
+          >
+            Signup
+          </button>
+          <div className="modal-footer" style={{ marginTop: "15px" }}>
+            <button
+              className="btn btn-outline-warning button"
+              onClick={this.props.triggerSignUp}
+            >
+              Login
+            </button>
+          </div>
+        </form>
+      </div>
     );
   }
 }

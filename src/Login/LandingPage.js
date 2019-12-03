@@ -17,7 +17,7 @@ export default class LandingPage extends React.Component {
 
   render() {
     return (
-      <React.Fragment className="starting">
+      <React.Fragment className="site">
         <NavBar />
         <Cards />
         <ImageGrid />

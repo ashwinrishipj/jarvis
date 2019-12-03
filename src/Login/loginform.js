@@ -3,6 +3,7 @@ import React from "react";
 import { withRouter } from "react-router-dom";
 import { FetchData } from "../fetch/Fetch";
 import NegativeAlert from "../Alerts/NegativeAlert";
+import Parts from "../particles/Parts";
 
 class LoginForm extends React.Component {
   constructor(props) {
@@ -11,16 +12,23 @@ class LoginForm extends React.Component {
       emailIdError: "",
       passwordError: "",
       changePage: false,
+      signup: false,
       emailId: "",
       password: "",
       alert: false,
-      content: "",
-      Credential: []
+      content: ""
     };
   }
 
-  changeAlert = contentText => {
-    this.setState({ alert: !this.state.alert, content: contentText });
+  setAlert = contentText => {
+    this.setState({ alert: true, content: contentText });
+  };
+
+  changeAlert =()=>{
+    this.setState({alert:false})
+  }
+  triggerSignUp = e => {
+    this.setState({ signup: !this.state.signup });
   };
 
   validateField = e => {
@@ -36,11 +44,9 @@ class LoginForm extends React.Component {
           )
         )
           this.setState({
-            emailIdError: "",
-            emailId: validation,
-            alert:false
+            alert: false
           });
-        else this.setState({ emailIdError: "gmail is not valid" });
+        else this.setAlert("gmail is not valid");
         break;
       case "password":
         if (
@@ -51,15 +57,12 @@ class LoginForm extends React.Component {
           )
         )
           this.setState({
-            passwordError: "",
-            password: validation,
-            alert:false
+            alert: false
           });
         else
-          this.setState({
-            passwordError:
-              "The password must be 6 characters with one upper case and one number and one special characters "
-          });
+          this.setAlert(
+            "The password must be 6 characters with one upper case and one number and one special characters "
+          );
         break;
       default:
         break;
@@ -78,19 +81,15 @@ class LoginForm extends React.Component {
       }
       `
     };
-
-    if (
-      this.state.emailIdError === "" &&
-      this.state.passwordError === "" &&
-      this.state.emailId !== "" && this.state.password !== ""
-    ) {
+    alert(JSON.stringify(this.state.content))
+    if (this.state.content === "") {
       FetchData(requestBody).then(response => {
         return response === true
           ? this.props.history.push("/home")
-          : this.changeAlert(response);
+          : this.setAlert(response);
       });
     } else {
-      this.changeAlert("please type valid emailId & password :");
+      this.setAlert("type valid gmail & password:")
     }
   };
 
@@ -103,83 +102,84 @@ class LoginForm extends React.Component {
   render() {
     return (
       <div>
-        <div
-          data-aos="zoom-in-down"
-          data-aos-duration="380"
-          data-aos-easing="ease-in-back"
-        >
-          <form>
-          <section style={{ Text: "5px" }}>
-          {this.state.alert ? (
-            <NegativeAlert
-              changeAlert={this.changeAlert}
-              content={this.state.content}
-            />
-          ) : (
-            ""
-          )}
-        </section>
-            <div className="form-group">
-              <label for="exampleInputEmail1" className="blue">
-                Email address
-              </label>
-              <div>
-                <input
-                  type="email"
-                  className="form-control"
-                  id="exampleInputEmail1"
-                  aria-describedby="emailHelp"
-                  placeholder="Enter email"
-                  onChange={this.validateField}
-                />
+        {this.state.signup ? 
+          <Parts triggerSignUp={this.triggerSignUp} />
+         : 
+          <div
+            data-aos="zoom-in-down"
+            data-aos-duration="380"
+            data-aos-easing="ease-in-back"
+          >
+            <form>
+            <div className="negativeAlert">
+            
+                {this.state.alert ? (
+                  <NegativeAlert
+                    changeAlert={this.changeAlert}
+                    content={this.state.content}
+                  />
+                ) : (
+                  ""
+                )}
+                
               </div>
-              <small id="emailHelp" className="form-text red">
-                {this.state.emailIdError}
-              </small>
-            </div>
-            <div className="form-group">
-              <label for="exampleInputPassword1" className="blue">
-                Password
-              </label>
-              <div>
-                <input
-                  type="password"
-                  className="form-control"
-                  id="exampleInputPassword1"
-                  placeholder="Password"
-                  onChange={this.validateField}
-                />
+              <div className="form-group">
+                <label for="exampleInputEmail1" className="blue">
+                  Email address
+                </label>
+                <div>
+                  <input
+                    type="email"
+                    className="form-control"
+                    id="exampleInputEmail1"
+                    aria-describedby="emailHelp"
+                    placeholder="Enter email"
+                    onChange={this.validateField}
+                  />
+                </div>
               </div>
-              <small id="emailHelp" className="form-text red">
-                {this.state.passwordError}
-              </small>
-            </div>
-            <div>
-              <button
-                type="button"
-                className="btn btn-outline-primary btn-block button text-white"
-                onClick={this.onSubmitSignIn}
-              >
-                Sign In
-              </button>
-            </div>
-            <div
-              className="modal-footer "
-              style={{ marginTop: "15px" }}
-            >
-              <button type="button" className="btn btn-outline-warning button">
-                forgot Password?
-              </button>
-              <button
-                type="button"
-                className="btn btn-outline-warning button "
-                onClick={this.props.triggerLogin}
-              >
-                Cancel{" "}
-              </button>
-            </div>
-          </form>
-        </div>
+              <div className="form-group">
+                <label for="exampleInputPassword1" className="blue">
+                  Password
+                </label>
+                <div>
+                  <input
+                    type="password"
+                    className="form-control"
+                    id="exampleInputPassword1"
+                    placeholder="Password"
+                    onChange={this.validateField}
+                  />
+                </div>
+              </div>
+              <div>
+                <button
+                  type="button"
+                  className="btn btn-outline-primary btn-block button"
+                  onClick={this.onSubmitSignIn}
+                >
+                  Sign In
+                </button>
+              </div>
+              <div className="modal-footer" style={{ marginTop: "15px" }}>
+                <button
+                  type="button"
+                  className="btn btn-outline-warning button "
+                >
+                  forgot Password?
+                </button>
+                <button
+                  type="button"
+                  className="btn btn-outline-warning button "
+                  onClick={this.triggerSignUp}
+                >
+                  Register{" "}
+                </button>
+              </div>
+            </form>
+          </div>
+       
+        }
       </div>
     );
   }

@@ -18,9 +18,6 @@ function App() {
         <Route path="/" strict exact>
           <LandingPage />
         </Route>
-        <Route path="/Sigup" strict exact>
-          <Parts />
-        </Route>
         <Route path="/home" strict exact>
           <Home />
         </Route>

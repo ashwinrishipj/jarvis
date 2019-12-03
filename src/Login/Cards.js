@@ -4,14 +4,12 @@ export class Cards extends React.Component {
   render() {
     return (
       <div className="container">
-        <div
-          className="container"
-          style={{ width: "800px", marginTop: "30px" }}
-        >
+        <div className="container">
+        <div className="container">
           <h4 data-aos="fade-up" data-aos-duration="2000">
             <b>Are you a person who Admire pictures?</b>
           </h4>
-          <div style={{ color: "#5c666f", marginTop: "40px" }}>
+          <div style={{ width :"85%",color: "#5c666f"}}>
             <p data-aos="fade-up" data-aos-duration="3000">
               so what if there is a platform which provides all the pictures you
               want? while blogging at the same time. Our community helps people
@@ -27,8 +25,7 @@ export class Cards extends React.Component {
           <div
             className="row"
             data-aos="flip-left"
-            data-aos-easing="ease-out-cubic"
-            data-aos-duration="3000"
+           
           >
             <div className="col-md-6">
               <div className="card" style={{ width: "18rem" }}>
@@ -62,8 +59,6 @@ export class Cards extends React.Component {
           <div
             className="row"
             data-aos="flip-left"
-            data-aos-easing="ease-out-cubic"
-            data-aos-duration="3000"
             style={{ marginTop: "20px" }}
           >
             <div className="col-lg-6" style={{ float: "right" }}>
@@ -97,6 +92,7 @@ export class Cards extends React.Component {
               </div>
             </div>
           </div>
+        </div>
         </div>
       </div>
     );
