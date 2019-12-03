@@ -3,35 +3,45 @@ import React from "react";
 export class Cards extends React.Component {
   render() {
     return (
-      <div className="container cardsText">
-        <h4 data-aos="fade-up" data-aos-duration="2000">
-          <b>Are you a person who Admire pictures?</b>
-        </h4>
-        <div style={{ width: "85%", color: "#5c666f" }}>
-          <p data-aos="fade-up" data-aos-duration="3000">
-            so what if there is a platform which provides all the pictures you
-            want? while blogging at the same time. Our community helps people to
-            get the most out of internet instead of getting pictures from each
-            site.
-          </p>
+      <div className="container">
+        <div
+          className="container"
+          style={{ width: "80%", marginTop: "30px" }}
+        >
+          <h4 data-aos="fade-up" data-aos-duration="2000">
+            <b>Are you a person who Admire pictures?</b>
+          </h4>
+          <div style={{ color: "#5c666f", marginTop: "40px" }}>
+            <p data-aos="fade-up" data-aos-duration="3000">
+              so what if there is a platform which provides all the pictures you
+              want? while blogging at the same time. Our community helps people
+              to get the most out of internet instead of getting pictures from
+              each site.
+            </p>
 
-          <p data-aos="fade-up" data-aos-duration="3000">
-            do this only provide pictures? def not!. you can post anything into
-            our social media acceptiong our norms.
-          </p>
-        </div>
-        <div className="row" data-aos="flip-left">
-          <div className="col-md-6">
-            <div className="card" style={{ width: "18rem" }}>
-              <img
-                src={require("./images/image4.jpg")}
-                className="card-img-top"
-                alt="..."
-              />
-              <div className="card-body">
-                <p className="card-text" style={{ color: "#5c666f" }}>
-                  “You don’t take a photograph. You ask quietly to borrow it.”
-                </p>
+            <p data-aos="fade-up" data-aos-duration="3000">
+              do this only provide pictures? def not!. you can post anything
+              into our social media accepting our norms.
+            </p>
+          </div>
+          <div
+            className="row"
+            data-aos="flip-left"
+            data-aos-easing="ease-out-cubic"
+            data-aos-duration="3000"
+          >
+            <div className="col-md-6">
+              <div className="card" style={{ width: "18rem" }}>
+                <img
+                  src={require("./images/image4.jpg")}
+                  className="card-img-top"
+                  alt="..."
+                />
+                <div className="card-body">
+                  <p className="card-text" style={{ color: "#5c666f" }}>
+                    “You don’t take a photograph. You ask quietly to borrow it.”
+                  </p>
+                </div>
               </div>
             </div>
           </div>
