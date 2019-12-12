@@ -44,47 +44,7 @@ class Home extends React.Component {
   render() {
     return (
       <div id="wrapper">
-        <aside id="sidebar-wrapper">
-          <div className="sidebar-brand">
-            <h2>Logo</h2>
-          </div>
-          <ul className="sidebar-nav">
-            <li className="header">Navigation</li>
-            <li>
-              <a onClick={this.handleCall} href="null" name="HomePage">
-                <i className="fa fa-home" aria-hidden="true"></i> Homepage
-              </a>
-            </li>
-            <li>
-              <a onClick={this.handleCall} href="null" name="PostData">
-                <i className="fa fa-tachometer" aria-hidden="true"></i>{" "}
-                Dashboard
-              </a>
-            </li>
-            <li className="header">More</li>
-            <li>
-              <a onClick={this.handleCall} href="null" name="Friends">
-                <i className="fa fa-users" aria-hidden="true"></i> Friends
-              </a>
-            </li>
-            <li>
-              <a onClick={this.handleCall} href="null" name="Settings">
-                <i className="fa fa-cog" aria-hidden="true"></i> Settings
-              </a>
-            </li>
-            <li>
-              <a onClick={this.handleCall} href="null" name="Information">
-                <i className="fa fa-info-circle" aria-hidden="true"></i>{" "}
-                Information
-              </a>
-            </li>
-            <li>
-              <a onClick={this.handleCall} href="null" name="SignOut">
-                <i className="fa fa-info-circle" aria-hidden="true"></i> SignOut
-              </a>
-            </li>
-          </ul>
-        </aside>
+      
         <div className="container-fluid px-0">
           <div id="navbar-wrapper">
             <nav className="navbar navbar-inverse">
