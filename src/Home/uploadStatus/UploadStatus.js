@@ -21,9 +21,8 @@ function UploadData() {
     let date = new Date().toISOString();
     const query = JSON.stringify({
       query: `mutation {
-        UploadUserPosts (input:{
-          UserId :"5da6de1092e1cf2e70885aa7",Textdata:"${textData}",ImageUrl:"${dataurl}",PostCreatedOn : "${date}",
-        })}
+        UploadUserPosts (input:{userId:"5de690d68d13f225801323f9",Textdata:"${textData}",
+        ImageUrl:"undefined",PostCreatedOn : "${date}"})}
       `
     });
 
@@ -59,7 +58,7 @@ function UploadData() {
     data.append("file", image);
     data.append("upload_preset", "jarvis");
 
-    if (textData != null) {
+    if (textData !== null) {
       setLoading(true);
       if (image !== null) {
         fetch("	https://api.cloudinary.com/v1_1/dobby8295/image/upload", {
