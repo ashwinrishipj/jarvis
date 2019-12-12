@@ -25,7 +25,7 @@ function UploadData() {
     const query = JSON.stringify({
       query: `mutation {
         UploadUserPosts (input:{
-          userId :"5e3084ea6a3f7d3a50cad44a",Textdata:"${textData}",ImageUrl:"${dataurl}",PostCreatedOn : "${date}",
+          userId :"5da6de1092e1cf2e70885aa7",Textdata:"${textData}",ImageUrl:"${dataurl}",PostCreatedOn : "${date}",
         })}
       `
     });
