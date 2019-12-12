@@ -44,7 +44,6 @@ class Home extends React.Component {
   render() {
     return (
       <div id="wrapper">
-      
         <div className="container-fluid px-0">
           <div id="navbar-wrapper">
             <nav className="navbar navbar-inverse">

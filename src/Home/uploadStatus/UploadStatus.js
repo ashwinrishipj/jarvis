@@ -1,19 +1,29 @@
 import React, { useState } from "react";
 import "./upload.css";
+import PositiveAlert from "../../Alerts/positiveAlert"
+import NegativeAlert from '../../Alerts/NegativeAlert';
 
 function UploadData() {
   const [image, setImage] = useState(null);
   const [loading, setLoading] = useState(false);
-  const [textData, setTextData] = useState();
+  const [textData, setTextData] = useState("");
+  const [error,setError] = useState("");
   const [previewImage, setPreviewImage] = useState("choose image");
-  const [alerts, setAlerts] = useState(false);
+  const [positiveAlerts, setPositiveAlerts] = useState(false);
+  const [NegativeAlerts, setNegativeAlerts] = useState(false);
+
 
   const handleTextArea = e => {
     setTextData(e.target.value);
   };
 
-  const changeAlert = () => {
-    setAlerts(false);
+  const changePositiveAlert = () => {
+    setPositiveAlerts(false);
+  };
+
+  const changeNegativeAlert = () => {
+    setNegativeAlerts(false);
+    setError("");
   };
 
   const sendDetails = async dataurl => {
@@ -21,8 +31,9 @@ function UploadData() {
     let date = new Date().toISOString();
     const query = JSON.stringify({
       query: `mutation {
-        UploadUserPosts (input:{userId:"5de690d68d13f225801323f9",Textdata:"${textData}",
-        ImageUrl:"undefined",PostCreatedOn : "${date}"})}
+        UploadUserPosts (input:{
+          userId :"5de695f4ac90fb3ac824a4",Textdata:"${textData}",ImageUrl:"${dataurl}",PostCreatedOn : "${date}"
+        })}
       `
     });
 
@@ -34,14 +45,15 @@ function UploadData() {
 
     const Response = await response.json();
 
-    if (Response.data.UploadUserPosts === true) {
+    if (Response.data.UploadUserPosts === true && Response.status === 204 ) {
       setPreviewImage("choose image");
       setTextData("");
-      setAlerts(true);
-    } else if (Response.errors.message !== "") {
-      setAlerts(Response.errors.message);
-    } else {
-      console.log("error unknown:");
+      setPositiveAlerts(true);
+    } else if (Response.status === 500) {
+      setNegativeAlerts(true);
+      setError(Response.errors[0].message);
+    } else{
+      setNegativeAlerts(true);
     }
   };
 
@@ -57,9 +69,8 @@ function UploadData() {
     const data = new FormData();
     data.append("file", image);
     data.append("upload_preset", "jarvis");
-
-    if (textData !== null) {
-      setLoading(true);
+    setLoading(true);
+    if (textData !== ""){
       if (image !== null) {
         fetch("	https://api.cloudinary.com/v1_1/dobby8295/image/upload", {
           method: "POST",
@@ -75,15 +86,18 @@ function UploadData() {
           .catch(err => {
             console.log(err);
           });
-      } else sendDetails();
-    } else {
-      alert("type something in text:");
-    }
+      } else sendDetails();}
+      else{
+        setNegativeAlerts(true);
+        setError("Please type something in text box:")
+      }
+   
   };
 
   return (
       <div className="container">
-        {alerts ? <positiveAlert changeAlert={() => changeAlert()} /> : ""}
+        {positiveAlerts ? <PositiveAlert changeAlert={() => changePositiveAlert()} /> : ""}
+        {NegativeAlerts ? <NegativeAlert content ={error} changeAlert={() => changeNegativeAlert()} /> : ""}
         <div className="form-group">
           <label style={{ color: "red" }}>post your thoughts:</label>
           <textarea
