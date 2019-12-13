@@ -1,16 +1,14 @@
 import React, { useState } from "react";
 import "./upload.css";
 import PositiveAlert from "../../Alerts/positiveAlert"
-import NegativeAlert from '../../Alerts/NegativeAlert';
 
 function UploadData() {
   const [image, setImage] = useState(null);
+  const [message, setMessage] = useState("");
   const [loading, setLoading] = useState(false);
   const [textData, setTextData] = useState("");
-  const [error,setError] = useState("");
   const [previewImage, setPreviewImage] = useState("choose image");
   const [positiveAlerts, setPositiveAlerts] = useState(false);
-  const [NegativeAlerts, setNegativeAlerts] = useState(false);
 
 
   const handleTextArea = e => {
@@ -19,11 +17,7 @@ function UploadData() {
 
   const changePositiveAlert = () => {
     setPositiveAlerts(false);
-  };
-
-  const changeNegativeAlert = () => {
-    setNegativeAlerts(false);
-    setError("");
+    setMessage("");
   };
 
   const sendDetails = async dataurl => {
@@ -32,7 +26,7 @@ function UploadData() {
     const query = JSON.stringify({
       query: `mutation {
         UploadUserPosts (input:{
-          userId :"5de695f4ac90fb3ac824a4",Textdata:"${textData}",ImageUrl:"${dataurl}",PostCreatedOn : "${date}"
+          userId :"5de695f4ac90fb3ac824a407",Textdata:"${textData}",ImageUrl:"${dataurl}",PostCreatedOn : "${date}",
         })}
       `
     });
@@ -45,15 +39,17 @@ function UploadData() {
 
     const Response = await response.json();
 
-    if (Response.data.UploadUserPosts === true && Response.status === 204 ) {
+    if (Response.data.UploadUserPosts === true) {
       setPreviewImage("choose image");
       setTextData("");
       setPositiveAlerts(true);
+      setMessage("Posted. Please keep in touch!...")
     } else if (Response.status === 500) {
-      setNegativeAlerts(true);
-      setError(Response.errors[0].message);
+      setPositiveAlerts(true);
+      setMessage(Response.errors[0].message);
     } else{
-      setNegativeAlerts(true);
+      setPositiveAlerts(true);
+      setMessage("DB error try Again!!!");
     }
   };
 
@@ -88,16 +84,15 @@ function UploadData() {
           });
       } else sendDetails();}
       else{
-        setNegativeAlerts(true);
-        setError("Please type something in text box:")
+        setPositiveAlerts(true);
+        setMessage("Please type something in text box:")
       }
    
   };
 
   return (
       <div className="container">
-        {positiveAlerts ? <PositiveAlert changeAlert={() => changePositiveAlert()} /> : ""}
-        {NegativeAlerts ? <NegativeAlert content ={error} changeAlert={() => changeNegativeAlert()} /> : ""}
+        {positiveAlerts ? <PositiveAlert content={message} changeAlert={() => changePositiveAlert()} /> : ""}
         <div className="form-group">
           <label style={{ color: "red" }}>post your thoughts:</label>
           <textarea
