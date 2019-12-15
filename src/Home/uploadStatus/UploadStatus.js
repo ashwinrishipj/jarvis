@@ -91,7 +91,8 @@ function UploadData() {
   };
 
   return (
-      <div className="container">
+      <div>
+       
         {positiveAlerts ? <PositiveAlert content={message} changeAlert={() => changePositiveAlert()} /> : ""}
         <div className="form-group">
           <label style={{ color: "red" }}>post your thoughts:</label>
@@ -140,6 +141,7 @@ function UploadData() {
           </div>
         </div>
       </div>
+      
   );
 }
 

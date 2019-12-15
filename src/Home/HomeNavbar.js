@@ -106,7 +106,7 @@ export default function HomeNavbar() {
   };
 
   return (
-    <>
+    <div className="container">
       <UploadData/>
       <Gallery photos={photos} onClick={openLightbox} />
       <ModalGateway >
@@ -124,7 +124,7 @@ export default function HomeNavbar() {
           </Modal>
         ) : null}
       </ModalGateway>
-    </>
+    </div>
   );
 }
 

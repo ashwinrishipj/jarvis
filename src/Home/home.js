@@ -1,12 +1,8 @@
 import React from "react";
-import $ from "jquery";
 import "./home.css";
 import HomeNavbar from "./HomeNavbar";
-import {
-  withRouter,
-  Switch,
-  Route
-} from "react-router-dom";
+import { Link } from "react-router-dom";
+import { withRouter, Switch, Route } from "react-router-dom";
 
 import UploadData from "./uploadStatus/UploadStatus";
 
@@ -15,24 +11,16 @@ class Home extends React.Component {
     super(props);
     this.state = {
       loadContent: null,
-      Sidebar: false
+      loadUserSettings: false,
+      search: false,
+      collapsed: false,
+      profileSelected: false
     };
   }
 
   componentWillMount() {
     this.setState({ loadContent: "HomePage" });
   }
-
-  componentDidMount = () => {
-    $("#sidebar-toggle").click(function(e) {
-      e.preventDefault();
-      $("#wrapper").toggleClass("toggled");
-    });
-  };
-
-  handleToggle = () => {
-    this.setState({ Sidebar: !this.state.Sidebar });
-  };
 
   handleCall = e => {
     e.preventDefault();
@@ -41,50 +29,106 @@ class Home extends React.Component {
     });
   };
 
+  handleUserSettings = () => {
+    this.setState({
+      loadUserSettings: true
+    });
+    alert("clicked data");
+  };
+
+  handleSearch = () => {
+    this.setState({ search: true });
+  };
+
+  toggleNavbar = () => {
+    this.setState({
+      collapsed: !this.state.collapsed
+    });
+  };
+
+  profileClick = () => {
+    this.setState({ profileSelected: true });
+  };
   render() {
+    const collapsed = this.state.collapsed;
+    const classOne = collapsed
+      ? " collapse navbar-collapse show"
+      : "collapse navbar-collapse";
+    const classTwo = collapsed
+      ? " navbar-toggler navbar-toggler-right"
+      : "navbar-toggler navbar-toggler-right collapsed";
     return (
       <div>
-      <div className="container-fluid px-0">
-      <nav class="navbar navbar-expand-lg navbar-light bg-light">
-  <a class="navbar-brand" href="#">Navbar</a>
-  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-    <span class="navbar-toggler-icon"></span>
-  </button>
+        <nav className="navbar navbar-expand-lg navbar-dark bg-dark transparent-nav">
+          <i
+            className="pointer fa fa-user fa-2x text-white "
+            onClick={this.profileClick}
+            data-toggle="dropdown"
+            aria-haspopup="true"
+            aria-expanded="false"
+          >
+            {" "}
+          </i>
 
-  <div class="collapse navbar-collapse" id="navbarSupportedContent">
-    <ul class="navbar-nav mr-auto">
-      <li class="nav-item active">
-        <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" href="#">Link</a>
-      </li>
-      <li class="nav-item dropdown">
-        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-          Dropdown
-        </a>
-        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-          <a class="dropdown-item" href="#">Action</a>
-          <a class="dropdown-item" href="#">Another action</a>
-          <div class="dropdown-divider"></div>
-          <a class="dropdown-item" href="#">Something else here</a>
-        </div>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Disabled</a>
-      </li>
-    </ul>
-    <form class="form-inline my-2 my-lg-0">
-      <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search"/>
-      <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
-    </form>
-  </div>
-</nav>
-       </div>
-        <div className="container" style={{marginLeft:"120px"}}>
-          <section >
+          <button
+            onClick={this.toggleNavbar}
+            className={`${classTwo}`}
+            type="button"
+            data-toggle="collapse"
+            data-target="#navbarResponsive"
+            aria-controls="navbarResponsive"
+            aria-expanded="false"
+            aria-label="Toggle navigation"
+          >
+            <span className="navbar-toggler-icon" />
+          </button>
+          <div className={`${classOne}`} id="navbarSupportedContent">
+            <ul className="navbar-nav mr-auto ml-4">
+              <li className="nav-item ">
+                <a className="nav-link" href="#">
+                  Home
+                </a>
+              </li>
+              <li className="nav-item">
+                <a className="nav-link" href="#">
+                  Link
+                </a>
+              </li>
+              <li>
+                {this.state.search ? (
+                  <form className="form-inline ml-2">
+                    <input
+                      className="form-control"
+                      type="search"
+                      placeholder="Search"
+                      aria-label="Search"
+                    />
+                  </form>
+                ) : (
+                  <div onClick={this.handleSearch}>
+                    <i className="SearchIcon fa fa-fw fa-search pointer">
+                      search
+                    </i>{" "}
+                  </div>
+                )}
+              </li>
+            </ul>
+            <a
+              className="navbar-brand text-white mr-0"
+              href
+              onClick={this.handleCall}
+            >
+              PicsPlay
+            </a>
+          </div>
+        </nav>
+
+        <div className="container-fluid">
+          <section>
             <div className="row">
-              <div className="col-lg-12 px-0">
+            <div className="col-md-2">
+              </div>
+              <div className="col-lg-10">
                 <Switch>
                   {(this.state.loadContent === "HomePage" && (
                     <Route path="/" component={HomeNavbar} />
@@ -102,7 +146,7 @@ class Home extends React.Component {
               </div>
             </div>
           </section>
-          </div>
+        </div>
       </div>
     );
   }
