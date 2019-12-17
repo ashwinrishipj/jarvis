@@ -127,21 +127,20 @@ class Home extends React.Component {
                     className="list-group-item selectItem list-group-item-action"
                     tabIndex="-1"
                     href="#list-home"
-                   
                     name=""
                     onClick={this.handleCall}
                   >
-                    
+                    yet to implement
                   </a>
                   <a
                     className="list-group-item selectItem list-group-item-action"
                     tabIndex="1"
                     href="#list-profile"
-                   
                     name="messages"
                     onClick={this.handleCall}
                   >
-                    
+                    {" "}
+                    yet to implement
                   </a>
                   <a
                     className="list-group-item selectItem list-group-item-action"
@@ -150,21 +149,21 @@ class Home extends React.Component {
                     onClick={this.handleCall}
                     name="messages"
                   >
-                   messages
+                    messages
                   </a>
                   <a
                     className="list-group-item selectItem list-group-item-action"
                     tabIndex="3"
                     href="#list-settings"
-                     name="signout"
-                     onClick={this.handleCall}
+                    name="signout"
+                    onClick={this.handleCall}
                   >
                     Logout
                   </a>
                 </div>
               </div>
               <div className="col-lg-10">
-              <Switch>
+                <Switch>
                   {(this.state.loadContent === "home" && (
                     <Route path="/" component={HomeNavbar} />
                   )) ||
@@ -178,8 +177,8 @@ class Home extends React.Component {
                 {(this.state.loadContent === "signout" &&
                   this.props.history.push("/")) ||
                   ""}
-                </div>
-                </div>
+              </div>
+            </div>
           </section>
         </div>
       </div>
