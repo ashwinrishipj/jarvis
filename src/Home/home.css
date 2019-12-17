@@ -9,3 +9,14 @@
     margin-left : 8px;
     color: rgba(255,255,255,.5);
 }
+.selectItem:hover{
+    color: whitesmoke;
+    background-color: #8b8b8b;
+    outline: none !important;
+}
+
+.selectItem:focus{
+    background-color: #363636;
+    color:whitesmoke;
+    outline: none;
+}

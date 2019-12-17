@@ -1,7 +1,6 @@
 import React from "react";
 import "./home.css";
 import HomeNavbar from "./HomeNavbar";
-import { Link } from "react-router-dom";
 import { withRouter, Switch, Route } from "react-router-dom";
 
 import UploadData from "./uploadStatus/UploadStatus";
@@ -10,16 +9,12 @@ class Home extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      loadContent: null,
+      loadContent: "home",
       loadUserSettings: false,
       search: false,
       collapsed: false,
       profileSelected: false
     };
-  }
-
-  componentWillMount() {
-    this.setState({ loadContent: "HomePage" });
   }
 
   handleCall = e => {
@@ -55,8 +50,8 @@ class Home extends React.Component {
       ? " collapse navbar-collapse show"
       : "collapse navbar-collapse";
     const classTwo = collapsed
-      ? " navbar-toggler navbar-toggler-right"
-      : "navbar-toggler navbar-toggler-right collapsed";
+      ? " navbar-toggler navbar-toggler-right ml-0"
+      : "navbar-toggler navbar-toggler-right collapsed ml-4";
     return (
       <div>
         <nav className="navbar navbar-expand-lg navbar-dark bg-dark transparent-nav">
@@ -83,20 +78,20 @@ class Home extends React.Component {
             <span className="navbar-toggler-icon" />
           </button>
           <div className={`${classOne}`} id="navbarSupportedContent">
-            <ul className="navbar-nav mr-auto ml-4">
+            <ul className="navbar-nav mr-auto">
               <li className="nav-item ">
-                <a className="nav-link" href="#">
+                <a className="nav-link" href="#null">
                   Home
                 </a>
               </li>
               <li className="nav-item">
-                <a className="nav-link" href="#">
+                <a className="nav-link" href="#null">
                   Link
                 </a>
               </li>
               <li>
                 {this.state.search ? (
-                  <form className="form-inline ml-2">
+                  <form className="form-inline ">
                     <input
                       className="form-control"
                       type="search"
@@ -126,25 +121,65 @@ class Home extends React.Component {
         <div className="container-fluid">
           <section>
             <div className="row">
-            <div className="col-md-2">
+              <div className="col-md-2">
+                <div className="list-group " id="list-tab" role="tablist">
+                  <a
+                    className="list-group-item selectItem list-group-item-action"
+                    tabIndex="-1"
+                    href="#list-home"
+                   
+                    name=""
+                    onClick={this.handleCall}
+                  >
+                    
+                  </a>
+                  <a
+                    className="list-group-item selectItem list-group-item-action"
+                    tabIndex="1"
+                    href="#list-profile"
+                   
+                    name="messages"
+                    onClick={this.handleCall}
+                  >
+                    
+                  </a>
+                  <a
+                    className="list-group-item selectItem list-group-item-action"
+                    tabIndex="2"
+                    href="#list-messages"
+                    onClick={this.handleCall}
+                    name="messages"
+                  >
+                   messages
+                  </a>
+                  <a
+                    className="list-group-item selectItem list-group-item-action"
+                    tabIndex="3"
+                    href="#list-settings"
+                     name="signout"
+                     onClick={this.handleCall}
+                  >
+                    Logout
+                  </a>
+                </div>
               </div>
               <div className="col-lg-10">
-                <Switch>
-                  {(this.state.loadContent === "HomePage" && (
+              <Switch>
+                  {(this.state.loadContent === "home" && (
                     <Route path="/" component={HomeNavbar} />
                   )) ||
-                    (this.state.loadContent === "PostData" && (
+                    (this.state.loadContent === "profile" && (
                       <Route path="/" component={UploadData} />
                     )) ||
-                    (this.state.loadContent === "Friends" && "") ||
-                    (this.state.loadContent === "Settings" && "") ||
+                    (this.state.loadContent === "messages" && "") ||
+                    (this.state.loadContent === "settings" && "") ||
                     ""}
                 </Switch>
-                {(this.state.loadContent === "SignOut" &&
+                {(this.state.loadContent === "signout" &&
                   this.props.history.push("/")) ||
                   ""}
-              </div>
-            </div>
+                </div>
+                </div>
           </section>
         </div>
       </div>
