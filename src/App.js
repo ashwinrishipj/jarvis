@@ -1,6 +1,6 @@
 import React from 'react';
 import {
-  BrowserRouter as Router,
+  BrowserRouter,
   Switch,
   Route
 } from "react-router-dom";
@@ -12,8 +12,7 @@ import LandingPage from './Login/LandingPage';
 
 function App() {
   return (
-    <div>
-      <Router>
+    <BrowserRouter>
       <Switch>
         <Route path="/" strict exact>
           <LandingPage />
@@ -22,8 +21,7 @@ function App() {
           <Home />
         </Route>
         </Switch>
-        </Router>
-    </div>
+    </BrowserRouter>
   );
 }
 

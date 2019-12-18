@@ -2,7 +2,7 @@
     cursor: pointer;
 }
 .pointer:active{
-    transform: translateY(5px);
+    transform: translateY(3px);
 }
 .SearchIcon{
     margin-top: 13px !important;
@@ -10,13 +10,47 @@
     color: rgba(255,255,255,.5);
 }
 .selectItem:hover{
-    color: whitesmoke;
+   color:greenyellow;
     background-color: #8b8b8b;
     outline: none !important;
+    cursor: pointer;
 }
 
 .selectItem:focus{
-    background-color: #363636;
-    color:whitesmoke;
+    background-color: #4d4d4d;
+    color:greenyellow;
     outline: none;
+    transform: translateY(5px);
+    transform: translateX(5px);
 }
+
+.marginSpace{
+    margin-top: 10%;
+}
+.Fixedposition{
+    position: fixed;
+}
+.Relativeposition{
+    position: relative;
+}
+
+@media only screen and (max-width: 600px) {
+    /* For mobile phones: */
+    .marginSpace{
+        margin-top: 0%;
+    }
+    .Fixedposition{
+        position: relative;
+        left: 20vw;
+        width: 100%;
+        text-align: center !important;
+        overflow-x: none !important;
+    }
+    .Relativeposition{
+        position: none !important;
+    }
+    .viewport{
+        margin-left: 10%;
+    }
+  }
+

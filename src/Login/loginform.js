@@ -91,7 +91,7 @@ class LoginForm extends React.Component {
     ) {
       FetchData(requestBody).then(response => {
         return response === true
-          ? this.props.history.push("/home")
+          ?  this.props.history.push("/home",{redirect:true})
           : this.setAlert(response);
       });
     } else {

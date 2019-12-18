@@ -1,9 +1,15 @@
 import React from "react";
 import "./home.css";
 import HomeNavbar from "./HomeNavbar";
-import { withRouter, Switch, Route } from "react-router-dom";
+import { withRouter, Switch, Route,Redirect } from "react-router-dom";
+import {
+  Button,
+  OverlayTrigger,
+  Popover
+} from "../../node_modules/react-bootstrap";
 
 import UploadData from "./uploadStatus/UploadStatus";
+import LandingPage from "../Login/LandingPage";
 
 class Home extends React.Component {
   constructor(props) {
@@ -13,8 +19,8 @@ class Home extends React.Component {
       loadUserSettings: false,
       search: false,
       collapsed: false,
-      profileSelected: false
-    };
+      currentUser:true,
+      profileSelected: true};
   }
 
   handleCall = e => {
@@ -28,7 +34,6 @@ class Home extends React.Component {
     this.setState({
       loadUserSettings: true
     });
-    alert("clicked data");
   };
 
   handleSearch = () => {
@@ -41,9 +46,28 @@ class Home extends React.Component {
     });
   };
 
-  profileClick = () => {
-    this.setState({ profileSelected: true });
+  handleLogout =()=>{
+    this.props.history.pushState(null, document.title, this.props.history.location.href);
+    this.props.history.push("/");
+    window.addEventListener('popstate', function (event)
+    {
+      this.props.history.pushState(null, document.title, this.props.location.href);
+    });
+  }
+  componentDidMount =()=>{
+  
+  }
+
+  profileClick = e => {
+    e.preventDefault();
+    this.refs.overlay.hide();
+    this.setState({ profileSelected: false, loadContent: e.target.name });
   };
+
+  handleNotifications = () => {
+    alert("notified:");
+  };
+
   render() {
     const collapsed = this.state.collapsed;
     const classOne = collapsed
@@ -55,15 +79,13 @@ class Home extends React.Component {
     return (
       <div>
         <nav className="navbar navbar-expand-lg navbar-dark bg-dark transparent-nav">
-          <i
-            className="pointer fa fa-user fa-2x text-white "
-            onClick={this.profileClick}
-            data-toggle="dropdown"
-            aria-haspopup="true"
-            aria-expanded="false"
+          <a
+            className="navbar-brand text-white mr-0"
+            href
+            onClick={this.handleCall}
           >
-            {" "}
-          </i>
+            PicsPlay
+          </a>
 
           <button
             onClick={this.toggleNavbar}
@@ -78,15 +100,22 @@ class Home extends React.Component {
             <span className="navbar-toggler-icon" />
           </button>
           <div className={`${classOne}`} id="navbarSupportedContent">
-            <ul className="navbar-nav mr-auto">
-              <li className="nav-item ">
-                <a className="nav-link" href="#null">
+            <ul className="navbar-nav mx-auto">
+              <li className="nav-item">
+                <a
+                  className="nav-link pointer"
+                  name="home"
+                  onClick={this.handleCall}
+                  href
+                >
+                  <span className=" fa fa-home" aria-hidden="true"></span>
                   Home
                 </a>
               </li>
-              <li className="nav-item">
-                <a className="nav-link" href="#null">
-                  Link
+              <li className="nav-item" name="blogs" onClick={this.handleCall}>
+                <a className="nav-link pointer" href>
+                  <span className="fa fa-newspaper-o" aria-hidden="true"></span>
+                  Blog
                 </a>
               </li>
               <li>
@@ -100,21 +129,88 @@ class Home extends React.Component {
                     />
                   </form>
                 ) : (
-                  <div onClick={this.handleSearch}>
-                    <i className="SearchIcon fa fa-fw fa-search pointer">
-                      search
-                    </i>{" "}
-                  </div>
+                  <li className="nav-item" name="blogs" onClick={this.handleSearch}>
+                <a className="nav-link pointer" href>
+                  <span className=" fa fa-fw fa-search pointer" aria-hidden="true"></span>
+                  Search
+                </a>
+              </li>
+                 
                 )}
               </li>
             </ul>
-            <a
-              className="navbar-brand text-white mr-0"
-              href
-              onClick={this.handleCall}
+            <OverlayTrigger
+              trigger="click"
+              key="bottom"
+              rootCloseEvent="click"
+              onHide="true"
+              rootClose="true"
+              placement="bottom"
+              ref = 'overlay'
+              overlay={
+                <Popover id={`popover-positioned-bottom`} title="username">
+                  <Popover.Title as="h3">{`Popover bottom`}</Popover.Title>
+                  <Popover.Content>
+                    <div className="list-group"style={{border:"none !important"}} id="list-tab" role="tablist">
+                      <a
+                        className="list-group-item selectItem list-group-item-action"
+                        tabIndex="0"
+                        href="#list-home"
+                        name="profile"
+                        onClick={this.profileClick}
+                      >
+                        <span
+                          className=" fa fa-address-book-o mr-2"
+                          aria-hidden="true"
+                        ></span>
+                        profile
+                      </a>
+                      <a
+                        className="list-group-item selectItem list-group-item-action"
+                        tabIndex="1"
+                        href="#list-profile"
+                        name="messages"
+                        onClick={this.profileClick}
+                      >
+                        <span
+                          className=" fa fa-envelope mr-2"
+                          aria-hidden="true"
+                        ></span>
+                        messages
+                      </a>
+                      <a
+                        className="list-group-item selectItem list-group-item-action"
+                        tabIndex="2"
+                        href="#list-messages"
+                        onClick={this.profileClick}
+                        name="settings"
+                      >
+                        <i class="fa fa-gear mr-2"></i>
+                        settings
+                      </a>
+                      <a
+                        className="list-group-item selectItem list-group-item-action"
+                        tabIndex="3"
+                        href="#list-settings"
+                        name="signout"
+                        onClick={this.handleLogout}
+                      >
+                        <i class="fa fa-sign-out mr-2"></i>
+                        Logout
+                      </a>
+                    </div>
+                  </Popover.Content>
+                </Popover>
+              }
             >
-              PicsPlay
-            </a>
+              <Button variant="outline-dark pointer text-white">
+                <span className="fa fa-user fa-lg" aria-hidden="true"></span>
+                <span
+                  className="fa fa-caret-down fa-xs"
+                  aria-hidden="true"
+                ></span>
+              </Button>
+            </OverlayTrigger>
           </div>
         </nav>
 
@@ -122,44 +218,32 @@ class Home extends React.Component {
           <section>
             <div className="row">
               <div className="col-md-2">
-                <div className="list-group " id="list-tab" role="tablist">
-                  <a
-                    className="list-group-item selectItem list-group-item-action"
-                    tabIndex="-1"
-                    href="#list-home"
-                    name=""
-                    onClick={this.handleCall}
-                  >
-                    yet to implement
-                  </a>
-                  <a
-                    className="list-group-item selectItem list-group-item-action"
-                    tabIndex="1"
-                    href="#list-profile"
-                    name="messages"
-                    onClick={this.handleCall}
-                  >
-                    {" "}
-                    yet to implement
-                  </a>
-                  <a
-                    className="list-group-item selectItem list-group-item-action"
-                    tabIndex="2"
-                    href="#list-messages"
-                    onClick={this.handleCall}
-                    name="messages"
-                  >
-                    messages
-                  </a>
-                  <a
-                    className="list-group-item selectItem list-group-item-action"
-                    tabIndex="3"
-                    href="#list-settings"
-                    name="signout"
-                    onClick={this.handleCall}
-                  >
-                    Logout
-                  </a>
+                <div className="row"></div>
+                <div className="row  marginSpace"></div>
+                <div className="row  marginSpace ">
+                  <ul className="list-group">
+                    <li
+                      className="selectItem list-group-item d-flex justify-content-between align-items-center"
+                      onClick={this.handleNotifications}
+                    >
+                      Cras justo odio
+                      <span className="badge badge-primary badge-pill">14</span>
+                    </li>
+                    <li
+                      className="selectItem list-group-item d-flex justify-content-between align-items-center"
+                      onClick={this.handleNotifications}
+                    >
+                      Dapibus ac facilisis in
+                      <span className="badge badge-primary badge-pill">2</span>
+                    </li>
+                    <li
+                      className="selectItem list-group-item d-flex justify-content-between align-items-center"
+                      onClick={this.handleNotifications}
+                    >
+                      Morbi leo risus
+                      <span className="badge badge-primary badge-pill">1</span>
+                    </li>
+                  </ul>
                 </div>
               </div>
               <div className="col-lg-10">
@@ -174,16 +258,14 @@ class Home extends React.Component {
                     (this.state.loadContent === "settings" && "") ||
                     ""}
                 </Switch>
-                {(this.state.loadContent === "signout" &&
-                  this.props.history.push("/")) ||
-                  ""}
               </div>
             </div>
           </section>
         </div>
       </div>
     );
-  }
+  
+}
 }
 
 export default withRouter(Home);
