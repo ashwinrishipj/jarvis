@@ -1,7 +1,7 @@
 import React from "react";
 import Parts from "../particles/Parts"
 import { withRouter } from "react-router-dom";
-import { FetchData } from "../fetch/Fetch";
+import { FetchData } from "../helpers/Fetch";
 import NegativeAlert from "../Alerts/NegativeAlert";
 
 class LoginForm extends React.Component {
@@ -90,8 +90,8 @@ class LoginForm extends React.Component {
       this.state.emailId !== "" && this.state.password !== ""
     ) {
       FetchData(requestBody).then(response => {
-        return response === true
-          ?  this.props.history.push("/home",{redirect:true})
+         return response === true
+          ? this.props.history.push("/home")
           : this.setAlert(response);
       });
     } else {

@@ -1,6 +1,6 @@
 import React from "react";
 import NegativeAlert from "../Alerts/NegativeAlert";
-import { FetchData } from "../fetch/Fetch";
+import { FetchData } from "../helpers/Fetch";
 import { withRouter } from "react-router-dom";
 
 class Parts extends React.Component {

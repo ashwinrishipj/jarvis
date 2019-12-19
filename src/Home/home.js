@@ -1,7 +1,7 @@
 import React from "react";
 import "./home.css";
 import HomeNavbar from "./HomeNavbar";
-import { withRouter, Switch, Route,Redirect } from "react-router-dom";
+import { withRouter, Switch, Route } from "react-router-dom";
 import {
   Button,
   OverlayTrigger,
@@ -47,15 +47,7 @@ class Home extends React.Component {
   };
 
   handleLogout =()=>{
-    this.props.history.pushState(null, document.title, this.props.history.location.href);
-    this.props.history.push("/");
-    window.addEventListener('popstate', function (event)
-    {
-      this.props.history.pushState(null, document.title, this.props.location.href);
-    });
-  }
-  componentDidMount =()=>{
-  
+   localStorage.clear();
   }
 
   profileClick = e => {
@@ -76,6 +68,8 @@ class Home extends React.Component {
     const classTwo = collapsed
       ? " navbar-toggler navbar-toggler-right ml-0"
       : "navbar-toggler navbar-toggler-right collapsed ml-4";
+
+      if (localStorage.getItem("userToken")){ 
     return (
       <div>
         <nav className="navbar navbar-expand-lg navbar-dark bg-dark transparent-nav">
@@ -263,8 +257,12 @@ class Home extends React.Component {
           </section>
         </div>
       </div>
-    );
-  
+    )}else {
+      return(
+      <Switch>
+      <Route path="/" component={LandingPage} />
+      </Switch>)
+    }
 }
 }
 

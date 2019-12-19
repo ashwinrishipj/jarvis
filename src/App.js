@@ -1,14 +1,9 @@
-import React from 'react';
-import {
-  BrowserRouter,
-  Switch,
-  Route
-} from "react-router-dom";
-import 'bootstrap/dist/css/bootstrap.min.css';
-import './App.css';
-import Home from './Home/home'
-import LandingPage from './Login/LandingPage';
-
+import React from "react";
+import { BrowserRouter, Switch, Route } from "react-router-dom";
+import "bootstrap/dist/css/bootstrap.min.css";
+import "./App.css";
+import Home from "./Home/home";
+import LandingPage from "./Login/LandingPage";
 
 function App() {
   return (
@@ -20,7 +15,7 @@ function App() {
         <Route path="/home" strict exact>
           <Home />
         </Route>
-        </Switch>
+      </Switch>
     </BrowserRouter>
   );
 }
