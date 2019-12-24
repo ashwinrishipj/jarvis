@@ -3,7 +3,7 @@ import NegativeAlert from "../Alerts/NegativeAlert";
 import { FetchData } from "../helpers/Fetch";
 import { withRouter } from "react-router-dom";
 
-class Parts extends React.Component {
+class RegisterUser extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -38,10 +38,10 @@ class Parts extends React.Component {
     if (
       this.state.error === "" &&
       this.state.firstName !== "" &&
-        this.state.lastName !== "" &&
-        this.state.emailId !== "" &&
-        this.state.password !== "" &&
-        this.state.confirmPassword !== ""
+      this.state.lastName !== "" &&
+      this.state.emailId !== "" &&
+      this.state.password !== "" &&
+      this.state.confirmPassword !== ""
     ) {
       FetchData(requestBody).then(response => {
         return response === true
@@ -49,7 +49,7 @@ class Parts extends React.Component {
           : this.changeAlert(response);
       });
     } else {
-      this.setState({ Alert: true,error:"enter valid data:" });
+      this.setState({ Alert: true, error: "enter valid data:" });
     }
   };
 
@@ -115,10 +115,7 @@ class Parts extends React.Component {
 
   render() {
     return (
-      <div
-      data-aos="flip-right"
-      className="centerSignup"
-    >
+      <div data-aos="flip-right" className="centerSignup">
         <form className="needs-validation blue" novalidate>
           <div className="negativeAlert">
             {this.state.Alert ? (
@@ -241,4 +238,4 @@ class Parts extends React.Component {
     );
   }
 }
-export default withRouter(Parts);
+export default withRouter(RegisterUser);

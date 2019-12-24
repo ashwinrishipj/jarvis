@@ -92,7 +92,6 @@ function UploadData() {
 
   return (
       <div>
-       
         {positiveAlerts ? <PositiveAlert content={message} changeAlert={() => changePositiveAlert()} /> : ""}
         <div className="form-group">
           <label style={{ color: "red" }}>post your thoughts:</label>

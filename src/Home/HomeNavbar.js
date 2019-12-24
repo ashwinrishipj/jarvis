@@ -95,7 +95,7 @@ export default function HomeNavbar() {
   const [currentImage, setCurrentImage] = useState(0);
   const [viewerIsOpen, setViewerIsOpen] = useState(false);
 
-  const openLightbox= useCallback((event, { photo, index }) => {
+  const openLightbox = useCallback((event, { photo, index }) => {
     setCurrentImage(index);
     setViewerIsOpen(true);
   }, []);
@@ -107,12 +107,16 @@ export default function HomeNavbar() {
 
   return (
     <div className="container">
-      <UploadData/>
+      <UploadData />
       <Gallery photos={photos} onClick={openLightbox} />
-      <ModalGateway >
+      <ModalGateway>
         {viewerIsOpen ? (
-          <Modal data-aos="zoom-in-down" data-aos-duration="900"
-          data-aos-easing="ease-in-back" onClose={closeLightbox}>
+          <Modal
+            data-aos="zoom-in-down"
+            data-aos-duration="900"
+            data-aos-easing="ease-in-back"
+            onClose={closeLightbox}
+          >
             <Carousel
               currentIndex={currentImage}
               views={photos.map(x => ({
@@ -127,4 +131,3 @@ export default function HomeNavbar() {
     </div>
   );
 }
-

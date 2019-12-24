@@ -1,5 +1,5 @@
 import React from "react";
-import Parts from "../particles/Parts"
+import RegisterUser from "../particles/Register";
 import { withRouter } from "react-router-dom";
 import { FetchData } from "../helpers/Fetch";
 import NegativeAlert from "../Alerts/NegativeAlert";
@@ -14,7 +14,7 @@ class LoginForm extends React.Component {
       password: "",
       alert: false,
       content: "",
-      signup :false
+      signup: false
     };
   }
 
@@ -22,12 +22,12 @@ class LoginForm extends React.Component {
     this.setState({ alert: true, content: contentText });
   };
 
-  unsetAlert = ()=>{
-    this.setState({alert:false})
-  }
-  triggerSignup =()=>{
-    this.setState({signup:!this.state.signup});
-  }
+  unsetAlert = () => {
+    this.setState({ alert: false });
+  };
+  triggerSignup = () => {
+    this.setState({ signup: !this.state.signup });
+  };
 
   validateField = e => {
     e.preventDefault();
@@ -44,9 +44,9 @@ class LoginForm extends React.Component {
           this.setState({
             emailIdError: "",
             emailId: validation,
-            alert:false
+            alert: false
           });
-        else this.setAlert("gmail is not valid" )
+        else this.setAlert("gmail is not valid");
         break;
       case "password":
         if (
@@ -59,12 +59,12 @@ class LoginForm extends React.Component {
           this.setState({
             passwordError: "",
             password: validation,
-            alert:false
+            alert: false
           });
         else
           this.setAlert(
-              "The password must be 6 characters with one upper case and one number and one special characters "
-          )
+            "The password must be 6 characters with one upper case and one number and one special characters "
+          );
         break;
       default:
         break;
@@ -87,22 +87,23 @@ class LoginForm extends React.Component {
     if (
       this.state.emailIdError === "" &&
       this.state.passwordError === "" &&
-      this.state.emailId !== "" && this.state.password !== ""
+      this.state.emailId !== "" &&
+      this.state.password !== ""
     ) {
       FetchData(requestBody).then(response => {
-         return response === true
+        return response === true
           ? this.props.history.push("/home")
           : this.setAlert(response);
       });
     } else {
-      this.setAlert("please type valid emailId & password :")
+      this.setAlert("please type valid emailId & password :");
     }
   };
 
   render() {
     return (
-      <div> 
-         <section className=" col-lg-11 negativeAlert px-0">
+      <div>
+        <section className=" col-lg-11 negativeAlert px-0">
           {this.state.alert ? (
             <NegativeAlert
               changeAlert={this.unsetAlert}
@@ -112,71 +113,73 @@ class LoginForm extends React.Component {
             ""
           )}
         </section>
-        {this.state.signup ? <Parts triggerSignup={this.triggerSignup}/>:
-        <div>
-        <div
-          data-aos="flip-left"
-          
-        >
-          <form>
-            <div className="form-group">
-              <label for="exampleInputEmail1" className="blue">
-                Email address
-              </label>
-              <div className="col-lg-11 px-0">
-                <input
-                  type="email"
-                  className="form-control"
-                  id="exampleInputEmail1"
-                  aria-describedby="emailHelp"
-                  placeholder="Enter email"
-                  onChange={this.validateField}
-                />
-              </div>
+        {this.state.signup ? (
+          <RegisterUser triggerSignup={this.triggerSignup} />
+        ) : (
+          <div>
+            <div data-aos="flip-left">
+              <form>
+                <div className="form-group">
+                  <label for="exampleInputEmail1" className="blue">
+                    Email address
+                  </label>
+                  <div className="col-lg-11 px-0">
+                    <input
+                      type="email"
+                      className="form-control"
+                      id="exampleInputEmail1"
+                      aria-describedby="emailHelp"
+                      placeholder="Enter email"
+                      onChange={this.validateField}
+                    />
+                  </div>
+                </div>
+                <div className="form-group">
+                  <label for="exampleInputPassword1" className="blue">
+                    Password
+                  </label>
+                  <div className="col-lg-11 px-0">
+                    <input
+                      type="password"
+                      className="form-control"
+                      id="exampleInputPassword1"
+                      placeholder="Password"
+                      onChange={this.validateField}
+                    />
+                  </div>
+                </div>
+                <div className="col-lg-11 px-0">
+                  <button
+                    type="button"
+                    className="btn btn-outline-primary btn-block button text-white"
+                    onClick={this.onSubmitSignIn}
+                  >
+                    Sign In
+                  </button>
+                </div>
+                <div
+                  className="modal-footer col-lg-11"
+                  style={{ marginTop: "15px" }}
+                >
+                  <button
+                    type="button"
+                    className="btn btn-outline-warning button"
+                  >
+                    forgot Password?
+                  </button>
+                  <button
+                    type="button"
+                    className="btn btn-outline-warning button "
+                    onClick={this.triggerSignup}
+                  >
+                    Register{" "}
+                  </button>
+                </div>
+              </form>
             </div>
-            <div className="form-group">
-              <label for="exampleInputPassword1" className="blue">
-                Password
-              </label>
-              <div className="col-lg-11 px-0">
-                <input
-                  type="password"
-                  className="form-control"
-                  id="exampleInputPassword1"
-                  placeholder="Password"
-                  onChange={this.validateField}
-                />
-              </div>
-            </div>
-            <div className="col-lg-11 px-0">
-              <button
-                type="button"
-                className="btn btn-outline-primary btn-block button text-white"
-                onClick={this.onSubmitSignIn}
-              >
-                Sign In
-              </button>
-            </div>
-            <div
-              className="modal-footer col-lg-11"
-              style={{ marginTop: "15px" }}
-            >
-              <button type="button" className="btn btn-outline-warning button">
-                forgot Password?
-              </button>
-              <button
-                type="button"
-                className="btn btn-outline-warning button "
-                onClick={this.triggerSignup}
-              >
-                Register </button>
-            </div>
-          </form>
-        </div>
-        </div>
-        }
+          </div>
+        )}
       </div>
-      
     );
   }
 }

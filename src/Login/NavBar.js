@@ -47,7 +47,7 @@ export const NavBar = () => {
         </nav>
       </div>
       <div class="row">
-        <div class="mx-auto centerLogin" >
+        <div class="mx-auto centerLogin">
           <LoginForm />
         </div>
       </div>

@@ -64,10 +64,7 @@ export const ImageGrid = () => {
       <h2> Check out our pics </h2>
       {loaded ? (
         <>
-          <Gallery
-            photos={images}
-            onClick={openLightbox}
-          />
+          <Gallery photos={images} onClick={openLightbox} />
           <ModalGateway>
             {viewerIsOpen ? (
               <Modal className="modelbutton" onClose={closeLightbox}>
@@ -85,10 +82,10 @@ export const ImageGrid = () => {
         </>
       ) : (
         <div className="d-flex justify-content-center">
-  <div className="spinner-grow text-primary" role="status">
-    <span className="sr-only">Loading...</span>
-  </div>
-</div>
+          <div className="spinner-grow text-primary" role="status">
+            <span className="sr-only">Loading...</span>
+          </div>
+        </div>
       )}
     </div>
   );
