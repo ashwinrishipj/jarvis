@@ -10,6 +10,7 @@ import {
 
 import UploadData from "./uploadStatus/UploadStatus";
 import LandingPage from "../Login/LandingPage";
+import Blog from "../Blog/blog";
 
 class Home extends React.Component {
   constructor(props) {
@@ -98,21 +99,20 @@ class Home extends React.Component {
               <ul className="navbar-nav mx-auto">
                 <li className="nav-item">
                   <a
-                    className="nav-link pointer"
+                    className="nav-link pointer fa fa-home"
                     name="home"
                     onClick={this.handleCall}
                     href
                   >
-                    <span className=" fa fa-home" aria-hidden="true"></span>
                     Home
                   </a>
                 </li>
                 <li className="nav-item" name="blogs" onClick={this.handleCall}>
-                  <a className="nav-link pointer" href>
-                    <span
-                      className="fa fa-newspaper-o"
-                      aria-hidden="true"
-                    ></span>
+                  <a
+                    className="nav-link pointer fa fa-newspaper-o "
+                    name="blog"
+                    href
+                  >
                     Blog
                   </a>
                 </li>
@@ -132,11 +132,7 @@ class Home extends React.Component {
                       name="blogs"
                       onClick={this.handleSearch}
                     >
-                      <a className="nav-link pointer" href>
-                        <span
-                          className=" fa fa-fw fa-search pointer"
-                          aria-hidden="true"
-                        ></span>
+                      <a className="nav-link pointer fa fa-fw fa-search" href>
                         Search
                       </a>
                     </li>
@@ -261,7 +257,7 @@ class Home extends React.Component {
                     </ul>
                   </div>
                 </div>
-                <div className="col-lg-10">
+                <div className="col-lg-10 mt-4">
                   <Switch>
                     {(this.state.loadContent === "home" && (
                       <Route path="/" component={HomeNavbar} />
@@ -271,6 +267,9 @@ class Home extends React.Component {
                       )) ||
                       (this.state.loadContent === "messages" && "") ||
                       (this.state.loadContent === "settings" && "") ||
+                      (this.state.loadContent === "blog" && (
+                        <Route path="/" component={Blog} />
+                      )) ||
                       ""}
                   </Switch>
                 </div>

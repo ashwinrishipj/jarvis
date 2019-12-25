@@ -7,7 +7,7 @@ export default function PositiveAlert(props) {
 
   return (
     <div
-      className="alert alert-success alert-dismissible fade show"
+      className="alert alert-success alert-dismissible fade show ml-4 mr-4"
       role="alert"
     >
       <strong>{props.content} </strong>

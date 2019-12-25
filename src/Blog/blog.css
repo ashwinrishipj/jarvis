@@ -1,0 +1,17 @@
+hr.lineStyle {
+    height: 12px;
+	border: 0;
+	box-shadow: 0 10px 10px -10px #8c8b8b inset;
+}
+.borderNone{
+    border:none;
+}
+
+.text-Area{
+    color:rgb(0, 100, 0);
+    border: none !important;
+    text-align: center !important;
+    -webkit-box-sizing: border-box;
+       -moz-box-sizing: border-box;
+            box-sizing: border-box;
+}
