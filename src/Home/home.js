@@ -9,7 +9,6 @@ import {
 } from "../../node_modules/react-bootstrap";
 
 import UploadData from "./uploadStatus/UploadStatus";
-import LandingPage from "../Login/LandingPage";
 import Blog from "../Blog/blog";
 
 class Home extends React.Component {

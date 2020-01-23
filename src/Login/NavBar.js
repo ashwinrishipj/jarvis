@@ -1,54 +1,37 @@
 import React from "react";
 import LoginForm from "./loginform";
 import { withRouter } from "react-router-dom";
+import { ImageGrid } from "./ImageGrid";
 
 export const NavBar = () => {
   return (
-    <div className="container-fluid px-0 data">
-      <div className="row">
-        <nav className="navbar navbar-expand-lg">
-          <i
-            className="navbar-brand  text-white aos-item"
-            data-aos="fade-right"
-            data-aos-duration="3500"
-          >
-            PicsPlay
-          </i>
-          <button
-            className="navbar-toggler"
-            type="button"
-            data-toggle="collapse"
-            data-target="#navbarNavAltMarkup"
-            aria-controls="navbarNavAltMarkup"
-            aria-expanded="false"
-            aria-label="Toggle navigation"
-          >
-            <span className="navbar-toggler-icon"></span>
-          </button>
-          <div
-            className="collapse navbar-collapse center"
-            data-aos="fade-right"
-            data-aos-duration="2500"
-            id="navbarNavAltMarkup"
-          >
-            <div className="navbar-nav">
-              <a className="nav-item nav-link active  text-white" href="null">
+    <div className="container-fluid p-0 site">
+      <nav className="navbar navbar-expand-lg navbar-dark bg-dark">
+        <a className="navbar-brand" href="#">
+          Picsplay
+        </a>
+       
+        <div className="collapse navbar-collapse" id="navbarSupportedContent">
+          <ul className="navbar-nav mr-auto">
+            <li className="nav-item active">
+              <a className="nav-link" href="#">
                 Home <span className="sr-only">(current)</span>
               </a>
-              <a className="nav-item nav-link  text-white" href="null">
-                Features
-              </a>
-              <a className="nav-item nav-link  text-white" href="null">
-                Pricing
-              </a>
-            </div>
-          </div>
-        </nav>
-      </div>
-      <div class="row">
-        <div class="mx-auto centerLogin">
-          <LoginForm />
+              </li>
+          </ul>
+         
         </div>
+      </nav>
+
+      <div className="row page">
+      <div className="col-lg-4 mx-auto centerLogin">
+        <LoginForm />
+          </div>
+        <div className="col-lg-6">
+          <ImageGrid/>
+        </div>
+      
+        
       </div>
     </div>
   );

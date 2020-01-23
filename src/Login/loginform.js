@@ -96,87 +96,91 @@ class LoginForm extends React.Component {
           : this.setAlert(response);
       });
     } else {
-      this.setAlert("please type valid emailId & password :");
+      this.setAlert("enter valid emailId & password :");
     }
   };
 
   render() {
     return (
       <div>
-        <section className=" col-lg-11 negativeAlert px-0">
-          {this.state.alert ? (
-            <NegativeAlert
-              changeAlert={this.unsetAlert}
-              content={this.state.content}
-            />
-          ) : (
-            ""
-          )}
-        </section>
         {this.state.signup ? (
           <RegisterUser triggerSignup={this.triggerSignup} />
         ) : (
           <div>
-            <div data-aos="flip-left">
-              <form>
-                <div className="form-group">
-                  <label for="exampleInputEmail1" className="blue">
-                    Email address
-                  </label>
-                  <div className="col-lg-11 px-0">
-                    <input
-                      type="email"
-                      className="form-control"
-                      id="exampleInputEmail1"
-                      aria-describedby="emailHelp"
-                      placeholder="Enter email"
-                      onChange={this.validateField}
-                    />
-                  </div>
-                </div>
-                <div className="form-group">
-                  <label for="exampleInputPassword1" className="blue">
-                    Password
-                  </label>
-                  <div className="col-lg-11 px-0">
-                    <input
-                      type="password"
-                      className="form-control"
-                      id="exampleInputPassword1"
-                      placeholder="Password"
-                      onChange={this.validateField}
-                    />
-                  </div>
-                </div>
-                <div className="col-lg-11 px-0">
-                  <button
-                    type="button"
-                    className="btn btn-outline-primary btn-block button text-white"
-                    onClick={this.onSubmitSignIn}
-                  >
-                    Sign In
-                  </button>
-                </div>
-                <div
-                  className="modal-footer col-lg-11"
-                  style={{ marginTop: "15px" }}
-                >
-                  <button
-                    type="button"
-                    className="btn btn-outline-warning button"
-                  >
-                    forgot Password?
-                  </button>
-                  <button
-                    type="button"
-                    className="btn btn-outline-warning button "
-                    onClick={this.triggerSignup}
-                  >
-                    Register{" "}
-                  </button>
-                </div>
-              </form>
-            </div>
+            <aside className="col">
+              <div className="row box">
+                <i
+                  className="fa fa-user"
+                  style={{ fontSize: "200%" }}
+                  aria-hidden="true"
+                ></i>
+              </div>
+              <div className="card">
+                <article className="card-body">
+                  <h4 className="card-title text-center mb-4 mt-1">Sign in</h4>
+                  <hr />
+                  <section className="col-lg-11 negativeAlert px-0">
+                    {this.state.alert ? (
+                      <NegativeAlert
+                        changeAlert={this.unsetAlert}
+                        content={this.state.content}
+                      />
+                    ) : (
+                      ""
+                    )}
+                  </section>
+                  <form>
+                    <div className="form-group">
+                      <div className="input-group">
+                        <div className="input-group-prepend">
+                          <span className="input-group-text">
+                            {" "}
+                            <i className="fa fa-envelope fa-xs"></i>{" "}
+                          </span>
+                        </div>
+                        <input
+                          className="form-control"
+                          placeholder="EmailId"
+                          type="email"
+                          onChange={this.validateField}
+                        />
+                      </div>
+                    </div>
+                    <div className="form-group">
+                      <div className="input-group">
+                        <div className="input-group-prepend">
+                          <span className="input-group-text">
+                            {" "}
+                            <i className="fa fa-key fa-xs"></i>{" "}
+                          </span>
+                        </div>
+                        <input
+                          className="form-control"
+                          placeholder="******"
+                          type="password"
+                          onChange={this.validateField}
+                        />
+                      </div>
+                    </div>
+                    <div className="form-group">
+                      <button
+                        type="submit"
+                        className="btn btn-primary btn-block"
+                        onClick={this.onSubmitSignIn}
+                      >
+                        {" "}
+                        Login{" "}
+                      </button>
+                    </div>
+                    <p className="text-center">
+                      <a href="#" className="btn">
+                        Forgot password?
+                      </a>
+                    </p>
+                  </form>
+                </article>
+              </div>
+            </aside>
           </div>
         )}
       </div>

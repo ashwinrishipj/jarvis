@@ -1,43 +1,38 @@
-.site{
-  overflow: hidden !important;
-  max-width: 100% !important;
+.site {
+  z-index: -2;
+  height: 100vh !important;
+  background-color: #f8f7f7;
+  overflow: hidden;
 }
 
+.box{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
 .button:active {
   background-color: rgb(83, 83, 83);
-  /* box-shadow: 0 5px rgb(230, 109, 109); */
   transform: translateY(5px);
 }
- .marginalignments {
-  margin-top:15%;
-  margin-left:7%
+.marginalignments {
+  margin-top: 15%;
+  margin-left: 7%;
 }
-.blue{
+.blue {
   color: #007bff !important;
 }
-.red{
+.red {
   color: red !important;
 }
 
-/* corosel */
-.data{
-  background-image:url('./images/mountain.jpg');
-  /* background-repeat: no-repeat; */
-  background-size: cover;
-  z-index: -2;
-   /* filter: blur(1px);
-  -webkit-filter: blur(2px);  */
-  height:100vh !important;
-}
-
-.centerLogin{
-  width: 420px;
+.centerLogin {
+  width: 400px;
   margin-top: 90px;
 }
-.cardsText{
+.cardsText {
   margin-left: 10%;
 }
-.negativeALert{
+.negativeALert {
   position: absolute;
   margin-bottom: -20%;
 }
@@ -52,11 +47,11 @@
   .centerSignup {
     margin-top: -32%;
   }
-  .centerLogin{
+  .centerLogin {
     margin-top: 30%;
     width: 350px;
   }
 }
-.footerMyProfile{
-  color:#007bff;
+.footerMyProfile {
+  color: #007bff;
 }
