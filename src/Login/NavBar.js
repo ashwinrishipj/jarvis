@@ -1,5 +1,4 @@
 import React from "react";
-import "aos/dist/aos.css";
 import LoginForm from "./loginform";
 import { withRouter } from "react-router-dom";
 
