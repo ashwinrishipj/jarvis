@@ -10,28 +10,23 @@ export const NavBar = () => {
         <a className="navbar-brand" href="#">
           Picsplay
         </a>
-       
+
         <div className="collapse navbar-collapse" id="navbarSupportedContent">
           <ul className="navbar-nav mr-auto">
             <li className="nav-item active">
               <a className="nav-link" href="#">
                 Home <span className="sr-only">(current)</span>
               </a>
-              </li>
+            </li>
           </ul>
-         
         </div>
       </nav>
 
       <div className="row page">
-      <div className="col-lg-4 mx-auto centerLogin">
-        <LoginForm />
-          </div>
-        <div className="col-lg-6">
-          <ImageGrid/>
+        <div className="col-lg-6">{/* <ImageGrid/> */}</div>
+        <div className="col-lg-4 mx-auto centerLogin">
+          <LoginForm />
         </div>
-      
-        
       </div>
     </div>
   );

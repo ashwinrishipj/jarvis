@@ -1,5 +1,5 @@
 import React from "react";
-import RegisterUser from "../particles/Register";
+import  RegisterUser  from "../Register/registerForm";
 import { withRouter } from "react-router-dom";
 import { FetchData } from "../helpers/Fetch";
 import NegativeAlert from "../Alerts/NegativeAlert";
@@ -71,7 +71,8 @@ class LoginForm extends React.Component {
     }
   };
 
-  onSubmitSignIn = () => {
+  onSubmitSignIn = (e) => {
+    e.preventDefault();
     let requestBody = {
       query: ` query{
         ValidateUser(input:{
@@ -103,23 +104,23 @@ class LoginForm extends React.Component {
   render() {
     return (
       <div>
-        {this.state.signup ? (
-          <RegisterUser triggerSignup={this.triggerSignup} />
-        ) : (
-          <div>
-            <aside className="col">
-              <div className="row box">
-                <i
-                  className="fa fa-user"
-                  style={{ fontSize: "200%" }}
-                  aria-hidden="true"
-                ></i>
-              </div>
+   
+          <aside className="col">
+            <div className="row box">
+              <i
+                className="fa fa-user"
+                style={{ fontSize: "200%" }}
+                aria-hidden="true"
+              ></i>
+            </div>
+            {this.state.signup ? (
+              <RegisterUser triggerSignup={this.triggerSignup} />
+            ) : (
               <div className="card">
                 <article className="card-body">
                   <h4 className="card-title text-center mb-4 mt-1">Sign in</h4>
                   <hr />
-                  <section className="col-lg-11 negativeAlert px-0">
+                  <section className="colnegativeAlert px-0">
                     {this.state.alert ? (
                       <NegativeAlert
                         changeAlert={this.unsetAlert}
@@ -172,17 +173,22 @@ class LoginForm extends React.Component {
                         Login{" "}
                       </button>
                     </div>
-                    <p className="text-center">
-                      <a href="#" className="btn">
-                        Forgot password?
-                      </a>
-                    </p>
+                    <button className="btn btn-outline-info">
+                      Forgor password?
+                    </button>
+
+                    <button
+                      className="btn btn-outline-info"
+                      onClick={this.triggerSignup}
+                      style={{ float: "right" }}
+                    >
+                      Create An Account
+                    </button>
                   </form>
                 </article>
               </div>
-            </aside>
-          </div>
-        )}
+            )}
+          </aside>
       </div>
     );
   }
