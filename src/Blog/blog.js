@@ -10,7 +10,7 @@ export default function Blog() {
 
   const publishData = () => {
     if (textArea !== "") {
-      let body= `query:{}`
+      // let body= `query:{}`
     } else {
         setPositiveAlerts(true);
       setAlertMessage("please type something to publish:");

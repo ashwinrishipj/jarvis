@@ -2,6 +2,7 @@ import React from "react";
 import NegativeAlert from "../Alerts/NegativeAlert";
 import { FetchData } from "../helpers/Fetch";
 import { withRouter } from "react-router-dom";
+import Spinner from "../../node_modules/react-bootstrap/Spinner";
 
 class RegisterUser extends React.Component {
   constructor(props) {
@@ -12,15 +13,20 @@ class RegisterUser extends React.Component {
       phoneNumber: "",
       Terms: "",
       error: "",
-      Alert: false
+      Alert: false,
+      spinner: false
     };
   }
 
   changeAlert = contentText => {
-    this.setState({ Alert: !this.state.Alert, error: contentText });
+    this.setState({
+      Alert: !this.state.Alert,
+      error: contentText,
+      spinner: false
+    });
   };
 
-  onSubmitForm = e => {
+  submitSignup = e => {
     e.preventDefault();
 
     let requestBody = {
@@ -39,6 +45,7 @@ class RegisterUser extends React.Component {
       this.state.password !== "" &&
       this.state.phoneNumber !== ""
     ) {
+      this.setState({ spinner: true });
       FetchData(requestBody).then(response => {
         return response === true
           ? this.props.history.push("/home")
@@ -78,7 +85,7 @@ class RegisterUser extends React.Component {
           });
         break;
       case "phoneNumber":
-        if (value.match(new RegExp("^[0][1-9]d{9}$|^[1-9]d{9}$"))) {
+        if (value.match(new RegExp("^[6-9][0-9]{9}$"))) {
           this.setState({ [type]: value, error: "", Alert: false });
         } else {
           this.setState({
@@ -120,7 +127,8 @@ class RegisterUser extends React.Component {
                 <input
                   className="form-control"
                   placeholder="EmailId"
-                  type="emailId"
+                  type="email"
+                  name="emailId"
                   onChange={this.validateField}
                 />
               </div>
@@ -137,6 +145,7 @@ class RegisterUser extends React.Component {
                   className="form-control"
                   placeholder="******"
                   type="password"
+                  name="password"
                   onChange={this.validateField}
                 />
               </div>
@@ -146,13 +155,14 @@ class RegisterUser extends React.Component {
                 <div className="input-group-prepend">
                   <span className="input-group-text">
                     {" "}
-                    <i className="fa fa-key fa-xs"></i>{" "}
+                    <i className="fa fa-mobile fa-lg"></i>{" "}
                   </span>
                 </div>
                 <input
                   className="form-control"
-                  placeholder="1234567890"
-                  type="phoneNumber"
+                  placeholder="enter your phone Number"
+                  type="int"
+                  name="phoneNumber"
                   onChange={this.validateField}
                 />
               </div>
@@ -160,17 +170,30 @@ class RegisterUser extends React.Component {
             <div className="form-group">
               <button
                 type="submit"
-                className="btn btn-success btn-block"
-                onClick={this.onSubmitSignIn}
+                className="btn btn-info btn-block"
+                onClick={this.submitSignup}
               >
-                {" "}
-                Register{" "}
+                {this.state.spinner ? (
+                  <>
+                    Registering ...
+                    <Spinner
+                      animation="border"
+                      size="sm"
+                      role="status"
+                      variant="dark"
+                    />
+                  </>
+                ) : (
+                  <>Register</>
+                )}
               </button>
             </div>
-            <button className="btn btn-outline-info">Forgot password?</button>
+            <button className="btn btn-outline-warning text-dark">
+              Forgot password?
+            </button>
 
             <button
-              className="btn btn-outline-info"
+              className="btn btn-outline-warning text-dark"
               onClick={this.props.triggerSignup}
               style={{ float: "right" }}
             >
