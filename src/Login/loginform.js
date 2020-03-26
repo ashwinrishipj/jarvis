@@ -191,9 +191,8 @@ class LoginForm extends React.Component {
                   </button>
 
                   <button
-                    className="btn btn-outline-warning text-dark"
+                    className="btn btn-outline-warning text-dark ml-4"
                     onClick={this.triggerSignup}
-                    style={{ float: "right" }}
                   >
                     Create An Account
                   </button>

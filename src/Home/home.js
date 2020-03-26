@@ -1,6 +1,5 @@
 import React from "react";
 import "./home.css";
-import HomeNavbar from "./HomeNavbar";
 import { withRouter, Switch, Route, Redirect } from "react-router-dom";
 import {
   Button,
@@ -10,6 +9,9 @@ import {
 
 import UploadData from "./uploadStatus/UploadStatus";
 import Blog from "../Blog/blog";
+import { PostsNotifications } from "./homeNotifications/userGroups";
+import { ChatNotifiactaions } from "./homeNotifications/chatNotifications";
+import HomePictures from "./homePictures";
 
 class Home extends React.Component {
   constructor(props) {
@@ -132,7 +134,7 @@ class Home extends React.Component {
                       onClick={this.handleSearch}
                     >
                       <a className="nav-link pointer fa fa-fw fa-search" href>
-                        Search
+                        Search Images
                       </a>
                     </li>
                   )}
@@ -222,44 +224,13 @@ class Home extends React.Component {
             <section>
               <div className="row">
                 <div className="col-md-2">
-                  <div className="row"></div>
-                  <div className="row  marginSpace"></div>
-                  <div className="row  marginSpace ">
-                    <ul className="list-group">
-                      <li
-                        className="selectItem list-group-item d-flex justify-content-between align-items-center"
-                        onClick={this.handleNotifications}
-                      >
-                        Cras justo odio
-                        <span className="badge badge-primary badge-pill">
-                          14
-                        </span>
-                      </li>
-                      <li
-                        className="selectItem list-group-item d-flex justify-content-between align-items-center"
-                        onClick={this.handleNotifications}
-                      >
-                        Dapibus ac facilisis in
-                        <span className="badge badge-primary badge-pill">
-                          2
-                        </span>
-                      </li>
-                      <li
-                        className="selectItem list-group-item d-flex justify-content-between align-items-center"
-                        onClick={this.handleNotifications}
-                      >
-                        Morbi leo risus
-                        <span className="badge badge-primary badge-pill">
-                          1
-                        </span>
-                      </li>
-                    </ul>
-                  </div>
+                  <PostsNotifications />
+                  <ChatNotifiactaions />
                 </div>
                 <div className="col-lg-10 mt-4">
                   <Switch>
                     {(this.state.loadContent === "home" && (
-                      <Route path="/" component={HomeNavbar} />
+                      <Route path="/" component={HomePictures} />
                     )) ||
                       (this.state.loadContent === "profile" && (
                         <Route path="/" component={UploadData} />

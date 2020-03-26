@@ -24,8 +24,10 @@
     transform: translateX(5px);
 }
 
+
 .marginSpace{
     margin-top: 10%;
+    margin-left:'1px';
 }
 .Fixedposition{
     position: fixed;
