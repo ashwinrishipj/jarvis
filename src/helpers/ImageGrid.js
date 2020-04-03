@@ -1,7 +1,6 @@
 import React, { useState, useCallback } from "react";
 import Gallery from "react-photo-gallery";
 import Carousel, { Modal, ModalGateway } from "react-images";
-import "./helpers.css"
 
 export const ImageGrid = props => {
   const [currentImage, setCurrentImage] = useState(0);
