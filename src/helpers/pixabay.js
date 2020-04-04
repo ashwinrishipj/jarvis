@@ -2,7 +2,7 @@ import React, { useState, useMemo } from "react";
 import { firstdigit } from "./unsplash";
 import { ImageGrid } from "./ImageGrid";
 
-export const Pixabay = props => {
+export const Pixabay = (props) => {
   const [loaded, setLoaded] = useState(false);
   const [imagesJSON, setImagesJSON] = useState(undefined);
 
@@ -12,12 +12,13 @@ export const Pixabay = props => {
     API_KEY +
     "&q=" +
     encodeURIComponent(props.searchedText);
+    
   const fetchImages = () => {
     fetch(URL)
-      .then(response => {
+      .then((response) => {
         return response.json();
       })
-      .then(res => {
+      .then((res) => {
         if (res.total !== (0 || null)) {
           var imageUrls = [];
           var data = {};
@@ -27,7 +28,7 @@ export const Pixabay = props => {
             data = {
               src: res.hits[i].imageURL,
               width: firstdigit(widthNumber) / 2,
-              height: firstdigit(heightNumber) / 2
+              height: firstdigit(heightNumber) / 2,
             };
             imageUrls.push(data);
           }
@@ -35,7 +36,7 @@ export const Pixabay = props => {
           setImagesJSON(imageUrls);
         }
       })
-      .catch(err => {
+      .catch((err) => {
         console.log(err);
       });
   };
@@ -50,10 +51,8 @@ export const Pixabay = props => {
         <ImageGrid images={imagesJSON} />
       ) : (
         <>
-        <div className="spinner-grow text-warning" role="status">
-
-        </div>
-        <text>Loading...</text>
+          <div className="spinner-grow text-warning" role="status"></div>
+          <text>Loading...</text>
         </>
       )}
     </div>

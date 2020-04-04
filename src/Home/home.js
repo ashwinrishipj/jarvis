@@ -1,17 +1,12 @@
 import React from "react";
 import "./home.css";
-import { withRouter, Switch, Route, Redirect } from "react-router-dom";
+import { withRouter, Switch, Redirect } from "react-router-dom";
 import {
   Button,
   OverlayTrigger,
-  Popover
+  Popover,
 } from "../../node_modules/react-bootstrap";
-
-import UploadData from "./uploadStatus/UploadStatus";
-import Blog from "../Blog/blog";
-import { PostsNotifications } from "./homeNotifications/userGroups";
-import { ChatNotifiactaions } from "./homeNotifications/chatNotifications";
-import HomePictures from "./homePictures";
+import { Navigation } from "./pageNavigation";
 
 class Home extends React.Component {
   constructor(props) {
@@ -22,20 +17,20 @@ class Home extends React.Component {
       search: false,
       collapsed: false,
       currentUser: true,
-      profileSelected: true
+      profileSelected: true,
     };
   }
 
-  handleCall = e => {
+  handleCall = (e) => {
     e.preventDefault();
     this.setState({
-      loadContent: e.target.name
+      loadContent: e.target.name,
     });
   };
 
   handleUserSettings = () => {
     this.setState({
-      loadUserSettings: true
+      loadUserSettings: true,
     });
   };
 
@@ -45,7 +40,7 @@ class Home extends React.Component {
 
   toggleNavbar = () => {
     this.setState({
-      collapsed: !this.state.collapsed
+      collapsed: !this.state.collapsed,
     });
   };
 
@@ -53,7 +48,7 @@ class Home extends React.Component {
     localStorage.clear();
   };
 
-  profileClick = e => {
+  profileClick = (e) => {
     e.preventDefault();
     this.refs.overlay.hide();
     this.setState({ profileSelected: false, loadContent: e.target.name });
@@ -122,7 +117,7 @@ class Home extends React.Component {
                     <form className="form-inline ">
                       <input
                         className="form-control"
-                        type="search"
+                        type="search and press enter"
                         placeholder="Search"
                         aria-label="Search"
                       />
@@ -219,34 +214,8 @@ class Home extends React.Component {
               </OverlayTrigger>
             </div>
           </nav>
-
-          <div className="container-fluid">
-            <section>
-              <div className="row">
-                <div className="col-md-2">
-                  <PostsNotifications />
-                  <ChatNotifiactaions />
-                </div>
-                <div className="col-lg-10 mt-4">
-                  <Switch>
-                    {(this.state.loadContent === "home" && (
-                      <Route path="/" component={HomePictures} />
-                    )) ||
-                      (this.state.loadContent === "profile" && (
-                        <Route path="/" component={UploadData} />
-                      )) ||
-                      (this.state.loadContent === "messages" && "") ||
-                      (this.state.loadContent === "settings" && "") ||
-                      (this.state.loadContent === "blog" && (
-                        <Route path="/" component={Blog} />
-                      )) ||
-                      ""}
-                  </Switch>
-                </div>
-              </div>
-            </section>
-          </div>
-        </div>
+          <Navigation navigate={this.state.loadContent}/>
+        </div>  
       );
     } else {
       return (

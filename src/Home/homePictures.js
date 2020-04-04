@@ -8,8 +8,8 @@ export default function HomePictures() {
   return (
     <div className="container">
       <UploadData />
-      <Pixabay/>
       <UnsplashImages />
+      <Pixabay/>
     </div>
   );
 }
