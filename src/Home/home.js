@@ -7,6 +7,7 @@ import {
   Popover,
 } from "../../node_modules/react-bootstrap";
 import { Navigation } from "./pageNavigation";
+import { SearchImpl } from "./homeHeader/searchImpl";
 
 class Home extends React.Component {
   constructor(props) {
@@ -14,7 +15,7 @@ class Home extends React.Component {
     this.state = {
       loadContent: "home",
       loadUserSettings: false,
-      search: false,
+      searchContent: "",
       collapsed: false,
       currentUser: true,
       profileSelected: true,
@@ -34,8 +35,8 @@ class Home extends React.Component {
     });
   };
 
-  handleSearch = () => {
-    this.setState({ search: true });
+  triggerPictures = (value) => {
+    this.setState({ searchContent: value, loadContent: "home" });
   };
 
   toggleNavbar = () => {
@@ -59,6 +60,7 @@ class Home extends React.Component {
   };
 
   render() {
+    alert(this.state.searchContent);
     const collapsed = this.state.collapsed;
     const classOne = collapsed
       ? " collapse navbar-collapse show"
@@ -113,26 +115,7 @@ class Home extends React.Component {
                   </a>
                 </li>
                 <li>
-                  {this.state.search ? (
-                    <form className="form-inline ">
-                      <input
-                        className="form-control"
-                        type="search and press enter"
-                        placeholder="Search"
-                        aria-label="Search"
-                      />
-                    </form>
-                  ) : (
-                    <li
-                      className="nav-item"
-                      name="blogs"
-                      onClick={this.handleSearch}
-                    >
-                      <a className="nav-link pointer fa fa-fw fa-search" href>
-                        Search Images
-                      </a>
-                    </li>
-                  )}
+                  <SearchImpl triggerPictures={this.triggerPictures} />
                 </li>
               </ul>
               <OverlayTrigger
@@ -186,7 +169,7 @@ class Home extends React.Component {
                           onClick={this.profileClick}
                           name="settings"
                         >
-                          <i class="fa fa-gear mr-2"></i>
+                          <i className="fa fa-gear mr-2"></i>
                           settings
                         </a>
                         <a
@@ -196,7 +179,7 @@ class Home extends React.Component {
                           name="signout"
                           onClick={this.handleLogout}
                         >
-                          <i class="fa fa-sign-out mr-2"></i>
+                          <i className="fa fa-sign-out mr-2"></i>
                           Logout
                         </a>
                       </div>
@@ -214,8 +197,16 @@ class Home extends React.Component {
               </OverlayTrigger>
             </div>
           </nav>
-          <Navigation navigate={this.state.loadContent}/>
-        </div>  
+          {this.state.loadContent ? (
+            <Navigation
+              navigate={this.state.loadContent}
+              search={this.state.searchContent}
+            />
+          ) : (
+            <Navigation navigate={this.state.loadContent} />
+          )}
+         
+        </div>
       );
     } else {
       return (

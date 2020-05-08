@@ -1,19 +1,20 @@
-import React, { useState, useMemo } from "react";
+import React, { useState, useEffect } from "react";
 import { firstdigit } from "./unsplash";
 import { ImageGrid } from "./ImageGrid";
 
 export const Pixabay = (props) => {
   const [loaded, setLoaded] = useState(false);
   const [imagesJSON, setImagesJSON] = useState(undefined);
+  const [searchValue, setSearchValue] = useState(props.searchString);
 
   var API_KEY = "15071280-4e3db6fe3ff8390e13b2cdfe5";
   var URL =
     "https://pixabay.com/api/?key=" +
     API_KEY +
     "&q=" +
-    encodeURIComponent(props.searchedText);
-    
-  const fetchImages = () => {
+    encodeURIComponent("random");
+
+  useEffect(() => {
     fetch(URL)
       .then((response) => {
         return response.json();
@@ -39,11 +40,7 @@ export const Pixabay = (props) => {
       .catch((err) => {
         console.log(err);
       });
-  };
-
-  useMemo(() => {
-    fetchImages();
-  }, [props.searchedText]);
+  }, [searchValue]);
 
   return (
     <div className="container-fluid px-0 imageGrid">

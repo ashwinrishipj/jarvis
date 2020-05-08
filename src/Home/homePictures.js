@@ -4,12 +4,22 @@ import "./home.css";
 import { UnsplashImages } from "../helpers/unsplash";
 import { Pixabay } from "../helpers/pixabay";
 
-export default function HomePictures() {
+class picturesDisplay extends React.Component{
+  constructor(props){
+    super(props);
+    this.state={
+
+    }
+  }
+  render(){
   return (
     <div className="container">
       <UploadData />
-      <UnsplashImages />
-      <Pixabay/>
+      <UnsplashImages searchString={this.props.search} />
+      <Pixabay searchString={this.props.search} />
     </div>
   );
-}
+  }
+};
+
+export default picturesDisplay;
