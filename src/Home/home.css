@@ -1,63 +1,79 @@
-.pointer:hover{
-    cursor: pointer;
-}
-.pointer:active{
-    transform: translateY(3px);
-}
-.SearchIcon{
-    margin-top: 13px !important;
-    margin-left : 8px;
-    color: rgba(255,255,255,.5);
-}
-.selectItem:hover{
-   color:greenyellow;
-    background-color: #8b8b8b;
-    outline: none !important;
-    cursor: pointer;
+.homeBackgroundColor {
+  background-color: #343a40;
 }
 
-.selectItem:focus{
-    background-color: #4d4d4d;
-    color:greenyellow;
-    outline: none;
-    transform: translateY(5px);
-    transform: translateX(5px);
+.pointer:hover {
+  cursor: pointer;
+}
+.pointer:active {
+  transform: translateY(3px);
+}
+.SearchIcon {
+  margin-top: 13px !important;
+  margin-left: 8px;
+  color: rgba(255, 255, 255, 0.5);
+}
+.selectItem:hover {
+  color: greenyellow;
+  background-color: #8b8b8b;
+  outline: none !important;
+  cursor: pointer;
 }
 
+.selectItem:focus {
+  background-color: #4d4d4d;
+  color: greenyellow;
+  outline: none;
+  transform: translateY(5px);
+  transform: translateX(5px);
+}
 
-.marginSpace{
-    margin-top: 10%;
-    margin-left:'1px';
+.marginSpace {
+  margin-top: 10%;
+  margin-left: "1px";
 }
-.Fixedposition{
-    position: fixed;
+.Fixedposition {
+  position: fixed;
 }
-.Relativeposition{
-    position: relative;
+.Relativeposition {
+  position: relative;
 }
 
 @media only screen and (max-width: 600px) {
-    /* For mobile phones: */
-    .marginSpace{
-        margin-top: 0%;
-    }
-    .Fixedposition{
-        position: relative;
-        left: 20vw;
-        width: 100%;
-        text-align: center !important;
-        overflow-x: none !important;
-    }
-    .Relativeposition{
-        position: none !important;
-    }
-    .viewport{
-        margin-left: 10%;
-    }
+  /* For mobile phones: */
+  .marginSpace {
+    margin-top: 0%;
   }
+  .Fixedposition {
+    position: relative;
+    left: 20vw;
+    width: 100%;
+    text-align: center !important;
+    overflow-x: none !important;
+  }
+  .Relativeposition {
+    position: none !important;
+  }
+  .viewport {
+    margin-left: 10%;
+  }
+}
 
-  .box{
-    display: flex;
-    align-items: center;
-    justify-content: center;
-  }
+.box {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.input-wrapper {
+  display: inline-block;
+  position: relative;
+  border-radius: 25px !important;
+}
+.input-wrapper:after {
+  font-family: "FontAwesome";
+  content: "\f002";
+  position: absolute;
+  right: 2px;
+  top: 6px;
+}

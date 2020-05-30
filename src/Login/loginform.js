@@ -16,11 +16,11 @@ class LoginForm extends React.Component {
       alert: false,
       content: "",
       signup: false,
-      spinner: false
+      spinner: false,
     };
   }
 
-  setAlert = contentText => {
+  setAlert = (contentText) => {
     this.setState({ alert: true, content: contentText, spinner: false });
   };
 
@@ -31,7 +31,7 @@ class LoginForm extends React.Component {
     this.setState({ signup: !this.state.signup });
   };
 
-  validateField = e => {
+  validateField = (e) => {
     e.preventDefault();
     let validation = e.target.value;
     let fieldName = e.target.type;
@@ -46,7 +46,7 @@ class LoginForm extends React.Component {
           this.setState({
             emailIdError: "",
             emailId: validation,
-            alert: false
+            alert: false,
           });
         else this.setAlert("gmail is not valid");
         break;
@@ -61,7 +61,7 @@ class LoginForm extends React.Component {
           this.setState({
             passwordError: "",
             password: validation,
-            alert: false
+            alert: false,
           });
         else
           this.setAlert(
@@ -73,7 +73,7 @@ class LoginForm extends React.Component {
     }
   };
 
-  onSubmitSignIn = e => {
+  onSubmitSignIn = (e) => {
     e.preventDefault();
     let requestBody = {
       query: ` query{
@@ -84,7 +84,7 @@ class LoginForm extends React.Component {
           tokenExpiration
         }
       }
-      `
+      `,
     };
 
     if (
@@ -94,7 +94,7 @@ class LoginForm extends React.Component {
       this.state.password !== ""
     ) {
       this.setState({ spinner: true });
-      FetchData(requestBody).then(response => {
+      FetchData(requestBody).then((response) => {
         return response === true
           ? this.props.history.push("/home")
           : this.setAlert(response);
@@ -120,7 +120,7 @@ class LoginForm extends React.Component {
           ) : (
             <div className="card">
               <article className="card-body">
-                <h4 className="card-title text-center mb-4 mt-1">Sign in</h4>
+                <h5 className="card-title text-center">Sign in</h5>
                 <hr />
                 <section className="col negativeAlert px-0">
                   {this.state.alert ? (

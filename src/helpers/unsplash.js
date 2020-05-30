@@ -1,20 +1,19 @@
 import React, { useState, useEffect } from "react";
 import { ImageGrid } from "./ImageGrid";
 
-export const firstdigit = (number) => {
-  while (number >= 10) number /= 10;
-  return number;
-};
-
-export const UnsplashImages = (props) => {
+export function UnSplash(props) {
   const [loaded, setLoaded] = useState(false);
   const [imagesJSON, setImagesJSON] = useState(null);
-  const [searchValue, setSearchValue] = useState("models");
+
+  const firstdigit = (number) => {
+    while (number >= 10) number /= 10;
+    return number;
+  };
 
   useEffect(() => {
     const client_id =
       "04ef34af0d8524c97d17ff1bfe9e132596c0a4439229e6da1c3b8e0b31e9eb31";
-    const query = searchValue;
+    var query = props.searchString;
 
     fetch(
       `https://api.unsplash.com/search/photos?client_id=${client_id}&query=${query}`
@@ -45,7 +44,7 @@ export const UnsplashImages = (props) => {
         console.log("error in fetching unsplash:->", err);
         return err;
       });
-  }, [searchValue]);
+  }, []);
 
   return (
     <div className="container-fluid px-0 imageGrid">
@@ -60,4 +59,6 @@ export const UnsplashImages = (props) => {
       )}
     </div>
   );
-};
+}
+
+export default UnSplash;

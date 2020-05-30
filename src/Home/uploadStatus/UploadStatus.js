@@ -10,7 +10,7 @@ function UploadData() {
   const [previewImage, setPreviewImage] = useState("choose image");
   const [positiveAlerts, setPositiveAlerts] = useState(false);
 
-  const handleTextArea = e => {
+  const handleTextArea = (e) => {
     setTextData(e.target.value);
   };
 
@@ -19,21 +19,22 @@ function UploadData() {
     setMessage("");
   };
 
-  const sendDetails = async dataurl => {
+  const sendDetails = async (dataurl) => {
     setLoading(false);
     let date = new Date().toISOString();
+
     const query = JSON.stringify({
       query: `mutation {
         UploadUserPosts (input:{
-          userId :"5da6de1092e1cf2e70885aa7",Textdata:"${textData}",ImageUrl:"${dataurl}",PostCreatedOn : "${date}",
+          userId :"5e9df7a7327a33165026b98f",Textdata:"${textData}",ImageUrl:"${dataurl}",PostCreatedOn : "${date}",
         })}
-      `
+      `,
     });
 
     const response = await fetch("http://localhost:4000/graphql", {
       headers: { "content-type": "application/json" },
       method: "POST",
-      body: query
+      body: query,
     });
 
     const Response = await response.json();
@@ -52,14 +53,14 @@ function UploadData() {
     }
   };
 
-  const imageName = e => {
+  const imageName = (e) => {
     e.preventDefault();
     alert(e.target.offsetHeight);
     setPreviewImage(e.target.files[0].name);
     setImage(e.target.files[0]);
   };
 
-  const uploadImage = async e => {
+  const uploadImage = async (e) => {
     e.preventDefault();
     const data = new FormData();
     data.append("file", image);
@@ -69,16 +70,16 @@ function UploadData() {
       if (image !== null) {
         fetch("	https://api.cloudinary.com/v1_1/dobby8295/image/upload", {
           method: "POST",
-          body: data
+          body: data,
         })
-          .then(response => response.json())
-          .then(data => {
+          .then((response) => response.json())
+          .then((data) => {
             if (data.secure_url !== "") {
               sendDetails(data.secure_url);
             }
             setLoading(false);
           })
-          .catch(err => {
+          .catch((err) => {
             console.log(err);
           });
       } else sendDetails();
@@ -116,9 +117,7 @@ function UploadData() {
               className="custom-file-input"
               onChange={imageName}
             />
-            <label className="custom-file-label" for="customFile">
-              {previewImage}
-            </label>
+            <label className="custom-file-label">{previewImage}</label>
           </div>
         </div>
 

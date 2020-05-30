@@ -1,0 +1,35 @@
+.profilePageBackgroundColor {
+  background-color: #343a40;
+
+  margin-left: -15px;
+  margin-right: -15px;
+}
+
+.postsCard {
+  background-color: #343a40;
+  color: white;
+}
+.postsCardHeader {
+  color: rgb(243, 104, 104);
+  text-align: center;
+}
+.bg-primary {
+  background-color: #e9425c !important;
+}
+
+.profileCard {
+  color: white;
+  width: min-content;
+  text-align: center;
+}
+
+.profileSubCards > * {
+  /* display: flex !important;
+  flex-direction: row;
+  flex-wrap: wrap; */
+  border-radius: 15px;
+  margin-bottom: 18px;
+  padding-left: 6%;
+  height: 30%;
+  width: max-content;
+}

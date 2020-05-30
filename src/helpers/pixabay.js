@@ -1,18 +1,22 @@
 import React, { useState, useEffect } from "react";
-import { firstdigit } from "./unsplash";
 import { ImageGrid } from "./ImageGrid";
 
 export const Pixabay = (props) => {
+  alert(props.searchString);
   const [loaded, setLoaded] = useState(false);
   const [imagesJSON, setImagesJSON] = useState(undefined);
-  const [searchValue, setSearchValue] = useState(props.searchString);
+
+  const firstdigit = (number) => {
+    while (number >= 10) number /= 10;
+    return number;
+  };
 
   var API_KEY = "15071280-4e3db6fe3ff8390e13b2cdfe5";
   var URL =
     "https://pixabay.com/api/?key=" +
     API_KEY +
     "&q=" +
-    encodeURIComponent("random");
+    encodeURIComponent(`${props.searchString}`);
 
   useEffect(() => {
     fetch(URL)
@@ -40,7 +44,7 @@ export const Pixabay = (props) => {
       .catch((err) => {
         console.log(err);
       });
-  }, [searchValue]);
+  }, []);
 
   return (
     <div className="container-fluid px-0 imageGrid">

@@ -14,19 +14,19 @@ class RegisterUser extends React.Component {
       Terms: "",
       error: "",
       Alert: false,
-      spinner: false
+      spinner: false,
     };
   }
 
-  changeAlert = contentText => {
+  changeAlert = (contentText) => {
     this.setState({
       Alert: !this.state.Alert,
       error: contentText,
-      spinner: false
+      spinner: false,
     });
   };
 
-  submitSignup = e => {
+  submitSignup = (e) => {
     e.preventDefault();
 
     let requestBody = {
@@ -37,7 +37,7 @@ class RegisterUser extends React.Component {
             tokenExpiration
           }
         }
-        `
+        `,
     };
     if (
       this.state.error === "" &&
@@ -46,7 +46,7 @@ class RegisterUser extends React.Component {
       this.state.phoneNumber !== ""
     ) {
       this.setState({ spinner: true });
-      FetchData(requestBody).then(response => {
+      FetchData(requestBody).then((response) => {
         return response === true
           ? this.props.history.push("/home")
           : this.changeAlert(response);
@@ -56,7 +56,7 @@ class RegisterUser extends React.Component {
     }
   };
 
-  validateField = e => {
+  validateField = (e) => {
     let type = e.target.name;
     let value = e.target.value;
 
@@ -65,7 +65,7 @@ class RegisterUser extends React.Component {
         if (
           value.match(new RegExp(/^([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})$/i))
         ) {
-          this.setState({ [type]: value, Alert: false });
+          this.setState({ [type]: value, Alert: false, error: "" });
         } else this.setState({ error: "gmail is not valid", Alert: true });
         break;
       case "password":
@@ -81,7 +81,7 @@ class RegisterUser extends React.Component {
           this.setState({
             error:
               "The password must be 6 characters with one upper case and one number and one special characters ",
-            Alert: true
+            Alert: true,
           });
         break;
       case "phoneNumber":
@@ -90,7 +90,7 @@ class RegisterUser extends React.Component {
         } else {
           this.setState({
             error: "phone number must be 10 digits",
-            Alert: true
+            Alert: true,
           });
         }
         break;
@@ -103,7 +103,7 @@ class RegisterUser extends React.Component {
     return (
       <div className="card">
         <article className="card-body">
-          <h4 className="card-title text-center mb-4 mt-1">Register</h4>
+          <h5 className="text-center">Register</h5>
           <hr />
           <section className="col negativeAlert px-0">
             {this.state.Alert ? (

@@ -7,7 +7,7 @@ import {
   Popover,
 } from "../../node_modules/react-bootstrap";
 import { Navigation } from "./pageNavigation";
-import { SearchImpl } from "./homeHeader/searchImpl";
+import Search from "../helpers/search";
 
 class Home extends React.Component {
   constructor(props) {
@@ -15,12 +15,16 @@ class Home extends React.Component {
     this.state = {
       loadContent: "home",
       loadUserSettings: false,
-      searchContent: "",
       collapsed: false,
       currentUser: true,
       profileSelected: true,
+      searchedContent: "",
     };
   }
+
+  handleSearch = (searchedContent) => {
+    this.setState({ loadContent: "home", searchedContent: searchedContent });
+  };
 
   handleCall = (e) => {
     e.preventDefault();
@@ -35,10 +39,6 @@ class Home extends React.Component {
     });
   };
 
-  triggerPictures = (value) => {
-    this.setState({ searchContent: value, loadContent: "home" });
-  };
-
   toggleNavbar = () => {
     this.setState({
       collapsed: !this.state.collapsed,
@@ -51,7 +51,6 @@ class Home extends React.Component {
 
   profileClick = (e) => {
     e.preventDefault();
-    this.refs.overlay.hide();
     this.setState({ profileSelected: false, loadContent: e.target.name });
   };
 
@@ -60,7 +59,6 @@ class Home extends React.Component {
   };
 
   render() {
-    alert(this.state.searchContent);
     const collapsed = this.state.collapsed;
     const classOne = collapsed
       ? " collapse navbar-collapse show"
@@ -75,7 +73,7 @@ class Home extends React.Component {
           <nav className="navbar navbar-expand-lg navbar-dark bg-dark transparent-nav">
             <a
               className="navbar-brand text-white mr-0"
-              href
+              href="#home"
               onClick={this.handleCall}
             >
               PicsPlay
@@ -100,7 +98,7 @@ class Home extends React.Component {
                     className="nav-link pointer fa fa-home"
                     name="home"
                     onClick={this.handleCall}
-                    href
+                    href="#home"
                   >
                     Home
                   </a>
@@ -109,13 +107,13 @@ class Home extends React.Component {
                   <a
                     className="nav-link pointer fa fa-newspaper-o "
                     name="blog"
-                    href
+                    href="#blog"
                   >
                     Blog
                   </a>
                 </li>
                 <li>
-                  <SearchImpl triggerPictures={this.triggerPictures} />
+                  <Search displayImages={(e) => this.handleSearch(e)} />
                 </li>
               </ul>
               <OverlayTrigger
@@ -200,12 +198,11 @@ class Home extends React.Component {
           {this.state.loadContent ? (
             <Navigation
               navigate={this.state.loadContent}
-              search={this.state.searchContent}
+              searchedContent={this.state.searchedContent}
             />
           ) : (
-            <Navigation navigate={this.state.loadContent} />
+            ""
           )}
-         
         </div>
       );
     } else {
