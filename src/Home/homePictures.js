@@ -5,6 +5,7 @@ import { Pixabay } from "../helpers/pixabay";
 import { UnSplash } from "../helpers/unsplash";
 import { PostsNotifications } from "./homeNotifications/userGroups";
 import { ChatNotifiactaions } from "./homeNotifications/chatNotifications";
+import { ImageGrid } from "../helpers/ImageGrid";
 
 function PicturesDisplay(props) {
   var displayPictures;
@@ -30,7 +31,7 @@ function PicturesDisplay(props) {
               <Pixabay searchString={searchContent} />
             </div>
           ) : (
-            " "
+            ""
           )}
         </div>
       </div>
