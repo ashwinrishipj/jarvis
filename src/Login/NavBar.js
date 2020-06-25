@@ -22,8 +22,7 @@ export const NavBar = () => {
       </nav>
 
       <div className="row page">
-        <div className="col-lg-6">{/* <ImageGrid/> */}</div>
-        <div className="col-lg-4 mx-auto centerLogin">
+        <div className="col-md-4 mx-auto centerLogin">
           <LoginForm />
         </div>
       </div>

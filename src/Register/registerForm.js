@@ -10,7 +10,7 @@ class RegisterUser extends React.Component {
     this.state = {
       emailId: "",
       password: "",
-      phoneNumber: "",
+      confirmPassword: "",
       Terms: "",
       error: "",
       Alert: false,
@@ -29,10 +29,11 @@ class RegisterUser extends React.Component {
   submitSignup = (e) => {
     e.preventDefault();
 
+    alert(this.state.confirmPassword);
     let requestBody = {
       query: `
         mutation{
-          RegisterUser(input:{emailId:"${this.state.emailId}",password:"${this.state.password}",phoneNumber:"${this.state.phoneNumber}"}){
+          RegisterUser(input:{emailId:"${this.state.emailId}",password:"${this.state.password}"}){
             token,
             tokenExpiration
           }
@@ -43,7 +44,7 @@ class RegisterUser extends React.Component {
       this.state.error === "" &&
       this.state.emailId !== "" &&
       this.state.password !== "" &&
-      this.state.phoneNumber !== ""
+      this.state.confirmPassword !== ""
     ) {
       this.setState({ spinner: true });
       FetchData(requestBody).then((response) => {
@@ -84,15 +85,21 @@ class RegisterUser extends React.Component {
             Alert: true,
           });
         break;
-      case "phoneNumber":
-        if (value.match(new RegExp("^[6-9][0-9]{9}$"))) {
-          this.setState({ [type]: value, error: "", Alert: false });
-        } else {
+      case "confirmPassword":
+        if (
+          value.match(
+            new RegExp(
+              "^(((?=.*[a-z])(?=.*[A-Z]))|((?=.*[a-z])(?=.*[0-9]))|((?=.*[A-Z])(?=.*[0-9])))(?=.{6,})"
+            )
+          ) &&
+          value === this.state.password
+        ) {
+          this.setState({ [type]: value, Alert: false, error: "" });
+        } else
           this.setState({
-            error: "phone number must be 10 digits",
+            error: "Your both password doesnt match ",
             Alert: true,
           });
-        }
         break;
       default:
         break;
@@ -155,14 +162,14 @@ class RegisterUser extends React.Component {
                 <div className="input-group-prepend">
                   <span className="input-group-text">
                     {" "}
-                    <i className="fa fa-mobile fa-lg"></i>{" "}
+                    <i className="fa fa-key fa-xs"></i>{" "}
                   </span>
                 </div>
                 <input
                   className="form-control"
-                  placeholder="enter your phone Number"
-                  type="int"
-                  name="phoneNumber"
+                  placeholder="Re-type your password"
+                  type="password"
+                  name="confirmPassword"
                   onChange={this.validateField}
                 />
               </div>
@@ -188,16 +195,16 @@ class RegisterUser extends React.Component {
                 )}
               </button>
             </div>
-            <button className="btn btn-outline-warning text-dark">
+            <button className="btn btn-outline-warning btn-md text-dark">
               Forgot password?
             </button>
 
             <button
-              className="btn btn-outline-warning text-dark"
+              className="btn btn-outline-warning  btn-md text-dark"
               onClick={this.props.triggerSignup}
               style={{ float: "right" }}
             >
-              Login
+              Go back
             </button>
           </form>
         </article>

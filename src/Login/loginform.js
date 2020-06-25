@@ -186,12 +186,12 @@ class LoginForm extends React.Component {
                       )}
                     </button>
                   </div>
-                  <button className="btn btn-outline-warning text-dark">
+                  <button className="btn btn-outline-warning btn-md text-dark">
                     Forgot password?
                   </button>
 
                   <button
-                    className="btn btn-outline-warning text-dark ml-4"
+                    className="btn btn-outline-warning btn-md text-dark ml-4"
                     onClick={this.triggerSignup}
                   >
                     Create An Account

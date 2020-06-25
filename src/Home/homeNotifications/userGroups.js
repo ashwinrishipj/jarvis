@@ -1,4 +1,5 @@
 import React from "react";
+import "../home.css";
 
 export const PostsNotifications = () => {
   const handleNotifications = () => {
@@ -6,7 +7,7 @@ export const PostsNotifications = () => {
   };
 
   return (
-    <div className="row ml-1 mt-4">
+    <div className="row ml-1 mt-4 sticky">
       <ul className="list-group">
         <li
           className="selectItem list-group-item d-flex justify-content-between align-items-center"

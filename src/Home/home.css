@@ -77,3 +77,8 @@
   right: 2px;
   top: 6px;
 }
+.sticky-bar {
+  position: sticky !important;
+  float: left;
+  position: absolute;
+}

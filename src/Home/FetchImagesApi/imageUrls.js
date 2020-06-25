@@ -1,10 +1,4 @@
-import React, { useState, useEffect } from "react";
-import { ImageGrid } from "./ImageGrid";
-
 export const Pixabay = (props) => {
-  alert(props.searchString);
-  const [loaded, setLoaded] = useState(false);
-  const [imagesJSON, setImagesJSON] = useState(undefined);
 
   const firstdigit = (number) => {
     while (number >= 10) number /= 10;
@@ -45,17 +39,3 @@ export const Pixabay = (props) => {
         console.log(err);
       });
   }, []);
-
-  return (
-    <div className="container-fluid px-0 imageGrid">
-      {loaded ? (
-        <ImageGrid images={imagesJSON} />
-      ) : (
-        <>
-          <div className="spinner-grow text-warning" role="status"></div>
-          <text>Loading...</text>
-        </>
-      )}
-    </div>
-  );
-};

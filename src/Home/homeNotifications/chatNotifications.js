@@ -7,7 +7,7 @@ export function ChatNotifiactaions() {
   const toggleShow = () => setShow(!show);
 
   return (
-    <div className="row ml-1 mt-4">
+    <div className="row ml-1 mt-4 sticky">
       <Toast show={show} onClose={toggleShow}>
         <Toast.Header>
           <img src="holder.js/20x20?text=%20" className="rounded mr-2" alt="" />
