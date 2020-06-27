@@ -11,32 +11,31 @@ const firstdigit = (number) => {
 };
 
 const defaultImages = [];
-const loreum = () => {
-  fetch(`https://picsum.photos/v2/list`)
-    .then((response) => {
-      return response.json();
-    })
-    .then((res) => {
-      var result = res;
-      if (result[0].id !== (null || "")) {
-        var data = {};
-        for (var i = 0; i < 21; i++) {
-          var widthNumber = result[i].width;
-          var heightNumber = result[i].height;
-          data = {
-            src: result[i].download_url,
-            width: firstdigit(widthNumber),
-            height: firstdigit(heightNumber),
-          };
-          defaultImages.push(data);
-        }
+
+fetch(`https://picsum.photos/v2/list`)
+  .then((response) => {
+    return response.json();
+  })
+  .then((res) => {
+    var result = res;
+    if (result[0].id !== (null || "")) {
+      var data = {};
+      for (var i = 0; i < 21; i++) {
+        var widthNumber = result[i].width;
+        var heightNumber = result[i].height;
+        data = {
+          src: result[i].download_url,
+          width: firstdigit(widthNumber),
+          height: firstdigit(heightNumber),
+        };
+        defaultImages.push(data);
       }
-    })
-    .catch((err) => {
-      console.log("error in fetching loreum ipsum:->", err);
-      return err;
-    });
-};
+    }
+  })
+  .catch((err) => {
+    console.log("error in fetching loreum ipsum:->", err);
+    return err;
+  });
 
 function PicturesDisplay(props) {
   const [loaded, setLoaded] = useState(false);
@@ -114,12 +113,10 @@ function PicturesDisplay(props) {
       });
   };
 
-  if (searchString !== "" || null) {
+  useEffect(() => {
     unsplash();
     pixabay();
-  } else {
-    loreum();
-  }
+  }, []);
 
   var displayPictures;
   if (props.searchedContent !== "") {
