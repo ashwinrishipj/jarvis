@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { Card, CardColumns, Nav, Button, Badge } from "react-bootstrap";
 import "./profile.css";
+import ProfileInfo from "./profileInfo";
 
 /**
  * Function to display the profile details:
@@ -36,9 +37,9 @@ function Profile() {
 
   return (
     <div className="profilePageBackgroundColor">
-      <div className="container ">
+      <div className="container-fluid">
         <div className="row">
-          <div className="col-lg-10">
+          <div className="col-lg-7">
             <div className="row">
               <Nav defaultActiveKey="/home" as="ul">
                 <Nav.Item as="li">
@@ -76,33 +77,34 @@ function Profile() {
               ""
             )}
           </div>
-          <div className="col-lg-2">
-            <Card border="primary" className="profileCard" bg="dark">
+          <div className="col-lg-4">
+            <ProfileInfo />
+            {/* <Card border="primary" className="profileCard" bg="dark">
               <Card.Header>Header</Card.Header>
               <Card.Body className="profileSubCards">
                 <Button variant="outline-info">
                   <Badge pill variant="outline mt-1">
                     {" "}
-                    <i class="fa fa-users fa-1x"> </i>
+                    <i className="fa fa-users fa-1x"> </i>
                   </Badge>
                   Profile views: 9
                 </Button>
                 <Button variant="outline-danger">
                   <Badge pill variant="outline mt-1">
                     {" "}
-                    <i class="fa fa-heartbeat fa-1x"> </i>
+                    <i className="fa fa-heartbeat fa-1x"> </i>
                   </Badge>
                   Hearts Received: 9
                 </Button>
                 <Button variant="outline-primary">
                   <Badge pill variant="outline mt-1">
                     {" "}
-                    <i class="fa fa-trophy"> </i>
+                    <i className="fa fa-trophy"> </i>
                   </Badge>
                   Profile Ranking: 12
                 </Button>
               </Card.Body>
-            </Card>
+            </Card> */}
             <br />
           </div>
         </div>
