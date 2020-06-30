@@ -6,6 +6,6 @@ import "./Login/login.css";
 import ReactDOM from "react-dom";
 import React from "react";
 import App from "./App";
-import ProfileInfo from "../src/Home/ProfileDisplay/profileInfo";
+import Profile from "../src/Home/ProfileDisplay/profile";
 
 ReactDOM.render(<App />, document.getElementById("root"));

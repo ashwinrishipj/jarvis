@@ -1,5 +1,6 @@
 import React from "react";
 import "./profileInfo.css";
+import { Card, Button, Badge } from "react-bootstrap";
 
 export default function ProfileInfo() {
   const searchProfile = () => {
@@ -12,31 +13,34 @@ export default function ProfileInfo() {
   };
   return (
     <React.Fragment>
-      <div className="col-lg-3 ml-4 card text-center bg-dark">
+      <div className="card text-center bg-dark mt-4">
         <h2> Profile </h2>
-        <div className="input-group">
-          <input
-            type="text"
-            className="form-control form-control-md"
-            placeholder="Search for messages or users..."
-            aria-label="Search for messages or users..."
-          />
-          <div className="input-group-append">
-            <button
-              className="btn btn-md btn-ico btn-secondary btn-minimal"
-              type="submit"
-            >
-              <i className="fa fa-search"></i>
-            </button>
+        <div className="input-group row ml-4 mr-4">
+          <div className="form-row">
+            <div className="col-9">
+              <input
+                className="form-control"
+                type="text"
+                placeholder="search for profile settings"
+                required
+              />
+            </div>
+            <div className="input-group-append">
+              <button
+                className="btn btn-sm btn-ico btn-secondary btn-minimal"
+                type="submit"
+              >
+                <i className="fa fa-search"></i>
+              </button>
+            </div>
           </div>
         </div>
-
-        <div className="card-body card-bg mt-4 bg-white">
+        <div className="card-body card-bg mt-4 ml-4 mr-4 bg-white">
           <h5 className="card-title">Print Username here</h5>
           <p className="card-text">Bio</p>
         </div>
 
-        <div className="card mt-4">
+        <div className="card mt-4 ml-4 mr-4">
           <ul className="list-group list-group-flush">
             <li className="list-group-item text-start text-left">
               Country: <span className="fa fa-flag  span-align"> </span>
@@ -63,24 +67,24 @@ export default function ProfileInfo() {
           </ul>
         </div>
 
-        <div class="form-row mt-4 mb-4">
-          <div class="col">
+        <div className="form-row mt-4 ml-4 mb-4">
+          <div className="col">
             <button
               type="button"
-              class="btn btn-md btn-outline-primary btn-basic d-flex align-items-center mr-4"
+              className="btn btn-sm btn-outline-primary btn-basic d-flex align-items-center mr-4"
             >
               Settings
-              <span class="fa fa-gear ml-2"></span>
+              <span className="fa fa-gear ml-2"></span>
             </button>
           </div>
 
-          <div class="col">
+          <div className="col">
             <button
               type="button"
-              class="btn btn-md btn-outline-danger btn-basic d-flex align-items-center ml-4"
+              className="btn btn-sm btn-outline-danger btn-basic d-flex align-items-center mr-3"
             >
               Logout
-              <span class="fa fa-sign-out ml-2"></span>
+              <span className="fa fa-sign-out ml-2"></span>
             </button>
           </div>
         </div>

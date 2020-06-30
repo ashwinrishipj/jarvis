@@ -69,7 +69,6 @@ function PicturesDisplay(props) {
             };
             imageUrls.push(data);
           }
-          setLoaded(true);
           setImagesJSON(imageUrls);
           console.log("images json ", imagesJSON);
         }
@@ -93,17 +92,18 @@ function PicturesDisplay(props) {
       })
       .then((res) => {
         if (res.total !== (0 || null)) {
-          var data = {};
+          var pixabayData = {};
           for (var i = 0; i < 5; i++) {
             var widthNumber = res.hits[i].imageWidth;
             var heightNumber = res.hits[i].imageHeight;
-            data = {
+            pixabayData = {
               src: res.hits[i].imageURL,
               width: firstdigit(widthNumber) / 2,
               height: firstdigit(heightNumber) / 2,
             };
-            imageUrls.push(data);
+            imageUrls.push(pixabayData);
           }
+
           setLoaded(true);
           setImagesJSON(imageUrls);
         }
