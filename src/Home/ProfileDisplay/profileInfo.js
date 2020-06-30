@@ -67,6 +67,33 @@ export default function ProfileInfo() {
           </ul>
         </div>
 
+        <div className="card mt-4 ml-4 mr-4">
+          <ul className="list-group list-group-flush">
+            <li className="list-group-item text-start text-left">
+              Country: <span className="fa fa-flag  span-align"> </span>
+              <br />
+              enter contry here
+            </li>
+            <li className="list-group-item text-left">
+              phone : <span className="fa fa-mobile fa-2x span-align"> </span>
+              <br />
+              enter phone number
+            </li>
+            <li className="list-group-item text-left">
+              mailId:
+              <span className="fa fa-envelope span-align"> </span>
+              <br />
+              enter mail Id
+            </li>
+            <li className="list-group-item text-left">
+              Date Created:
+              <span className="fa fa-calendar span-align "> </span>
+              <br />
+              enter Date created
+            </li>
+          </ul>
+        </div>
+
         <div className="form-row mt-4 ml-4 mb-4">
           <div className="col">
             <button

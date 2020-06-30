@@ -20,7 +20,7 @@ function Profile() {
 
     const query = JSON.stringify({
       query: `mutation{
-  deletePost(input:{userId:"5e9df7a7327a33165026b98f",postId: "${element_id}"})
+  deletePost(input:{userId:"5e9df7a7327a33165026b98f",postId: "${element_id}"})  {_id,ImageUrl,Width,Height,Likes,Textdata,PostCreatedOn}
 }
 `,
     });
@@ -33,13 +33,17 @@ function Profile() {
     response = await response.json();
     console.log("response", response);
     alert(response);
+    setResponsedata(response.data.deletePost);
   };
 
   useEffect(() => {
+    const abortController = new AbortController();
+    const signal = abortController.signal;
+
     const fetchUserPosts = async () => {
       const query = JSON.stringify({
         query: `query{
-          getUserPosts(userId:"5e9df7a7327a33165026b98f") {_id,ImageUrl,Width,Height,Likes,Textdata}}`,
+          getUserPosts(userId:"5e9df7a7327a33165026b98f") {_id,ImageUrl,Width,Height,Likes,Textdata,PostCreatedOn}}`,
       });
 
       var response = await fetch("http://localhost:4000/graphql", {
@@ -53,7 +57,13 @@ function Profile() {
       setResponsedata(response.data.getUserPosts);
     };
 
-    fetchUserPosts();
+    fetchUserPosts().then(() => {
+      return signal;
+    });
+
+    return function cleanup() {
+      abortController.abort();
+    };
   }, []);
 
   return (
@@ -80,6 +90,8 @@ function Profile() {
             {responsedata !== "" ? (
               <div className="card-columns mt-4">
                 {responsedata.map((element, i) => {
+                  var date = element.PostCreatedOn;
+                  date = date.split("T")[0];
                   return (
                     <div
                       className="card w-100 bg-dark text-white"
@@ -91,11 +103,9 @@ function Profile() {
                         <p className="card-text">{element.Textdata}</p>
                       </div>
                       <div className="card-footer">
-                        <small className="text-muted">
-                          {element.PostCreatedOn}
-                        </small>
+                        <small className="text-muted">{date}</small>
                         <button
-                          className="btn mb-2 btn-outline-danger float-right"
+                          className="btn btn-sm btn-outline-danger float-right"
                           onClick={() => handleDeletePost(element._id)}
                         >
                           delete
